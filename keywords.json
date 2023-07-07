@@ -144,6 +144,7 @@
   "north-star": ["star", "snowflake", "asterisk"],
   "note": ["card", "paper", "ticket"],
   "octoface": ["octocat", "brand"],
+  "openproject": ["logo", "brand"],
   "organization": ["people", "group", "team"],
   "package": ["box", "ship"],
   "paintcan": ["style", "theme", "art", "color"],
