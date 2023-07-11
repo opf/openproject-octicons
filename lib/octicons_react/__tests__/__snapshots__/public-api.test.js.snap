@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`@primer/octicons-react should not update exports without a semver change 1`] = `
+exports[`@openproject/octicons-react should not update exports without a semver change 1`] = `
 [
   "AccessibilityIcon",
   "AccessibilityInsetIcon",

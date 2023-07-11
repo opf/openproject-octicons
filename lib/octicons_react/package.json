@@ -1,5 +1,5 @@
 {
-  "name": "@primer/octicons-react",
+  "name": "@openproject/octicons-react",
   "version": "19.4.0",
   "description": "A scalable set of icons handcrafted with <3 by GitHub.",
   "homepage": "https://primer.style/octicons",
@@ -14,7 +14,7 @@
   },
   "sideEffects": false,
   "types": "dist/index.d.ts",
-  "repository": "primer/octicons",
+  "repository": "opf/octicons",
   "scripts": {
     "build": "script/build.js && script/types.js && rollup -c",
     "clean": "rimraf .next dist src/__generated__",

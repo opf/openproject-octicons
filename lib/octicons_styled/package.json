@@ -1,5 +1,5 @@
 {
-  "name": "@primer/styled-octicons",
+  "name": "@openproject/styled-octicons",
   "version": "16.1.0",
   "description": "A scalable set of icons handcrafted with <3 by GitHub.",
   "homepage": "https://primer.style/octicons",
@@ -9,7 +9,7 @@
   "module": "dist/index.esm.js",
   "sideEffects": false,
   "types": "dist/index.d.ts",
-  "repository": "primer/octicons",
+  "repository": "opf/octicons",
   "files": [
     "dist"
   ],
