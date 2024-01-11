@@ -63,6 +63,7 @@
   "diff-removed": ["deleted", "subtracted", "dash"],
   "diff-renamed": ["moved", "arrow"],
   "ellipsis": ["dot", "read", "more", "hidden", "expand"],
+  "enterprise": ["diamond"],
   "eye": ["look", "watch", "see"],
   "eye-closed": ["hidden", "invisible", "concealed", ""],
   "file": ["file", "text", "words"],
