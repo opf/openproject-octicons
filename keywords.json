@@ -197,7 +197,7 @@
   "primitive-dot-stroke": ["circle", "dot", "unread"],
   "primitive-square": ["box"],
   "project": ["board", "kanban", "columns", "scrum"],
-  "protactor": ["measure", "angle", "geometry"],
+  "protractor": ["measure", "angle", "geometry"],
   "pulse": ["graph", "trend", "line", "activity"],
   "question": ["help", "explain"],
   "quote": ["quotation"],
