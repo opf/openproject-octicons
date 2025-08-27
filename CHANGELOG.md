@@ -1,5 +1,39 @@
 # Changelog
 
+## 19.27.0
+
+### Minor Changes
+
+- [#115](https://github.com/opf/openproject-octicons/pull/115) [`f1724a9e`](https://github.com/opf/openproject-octicons/commit/f1724a9e5896930d814f892fa2661bc2fa5161d6) Thanks [@mrmir](https://github.com/mrmir)! - Add `people-all-assigned` icon
+
+## 19.26.3
+
+### Patch Changes
+
+- [#1102](https://github.com/primer/octicons/pull/1102) [`02cdd0c2`](https://github.com/opf/openproject-octicons/commit/02cdd0c2229c5148380e64ae6fe9957efc9e06a2) Thanks [@CameronFoxly](https://github.com/CameronFoxly)! - Update Loop icon for visual alignment
+
+## 19.26.2
+
+### Patch Changes
+
+- [#1099](https://github.com/primer/octicons/pull/1099) [`239cdee1`](https://github.com/opf/openproject-octicons/commit/239cdee1b6a2b3ada569aa25e260bf5862b52621) Thanks [@CameronFoxly](https://github.com/CameronFoxly)! - Add spaces, agents, loops, and adjust mention
+
+## 19.26.1
+
+### Patch Changes
+
+- [#1097](https://github.com/primer/octicons/pull/1097) [`ce04eca0`](https://github.com/opf/openproject-octicons/commit/ce04eca0b9c33cbc3586abd57386e63d97bff7fa) Thanks [@TylerJDev](https://github.com/TylerJDev)! - Add outlined sparkle icon
+
+## 19.26.0
+
+### Minor Changes
+
+- [#106](https://github.com/opf/openproject-octicons/pull/106) [`4fcff03e`](https://github.com/opf/openproject-octicons/commit/4fcff03e59036f438867d2efb4adc226aa2191ab) Thanks [@HDinger](https://github.com/HDinger)! - Add life-ring icon
+
+### Patch Changes
+
+- [#1070](https://github.com/primer/octicons/pull/1070) [`795101e3`](https://github.com/opf/openproject-octicons/commit/795101e3a46d6835fb2e091384033d8962ab08d1) Thanks [@smockle](https://github.com/smockle)! - Add `pause` icon
+
 ## 19.25.0
 
 ### Minor Changes
