@@ -1,5 +1,11 @@
 # Changelog
 
+## 19.28.0
+
+### Minor Changes
+
+- [#102](https://github.com/opf/openproject-octicons/pull/102) [`fae926a8`](https://github.com/opf/openproject-octicons/commit/fae926a8b0d2aae3f2eba32135b41f0523d7f899) Thanks [@myabc](https://github.com/myabc)! - Update supported Angular versions to v19 - 20: Test and build against latest Angular, v20.1.2.
+
 ## 19.27.1
 
 ### Patch Changes
