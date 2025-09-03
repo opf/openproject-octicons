@@ -1,5 +1,17 @@
 # Changelog
 
+## 19.28.0
+
+### Minor Changes
+
+- [#102](https://github.com/opf/openproject-octicons/pull/102) [`fae926a8`](https://github.com/opf/openproject-octicons/commit/fae926a8b0d2aae3f2eba32135b41f0523d7f899) Thanks [@myabc](https://github.com/myabc)! - Update supported Angular versions to v19 - 20: Test and build against latest Angular, v20.1.2.
+
+* [#1107](https://github.com/primer/octicons/pull/1107) [`4073a521`](https://github.com/opf/openproject-octicons/commit/4073a52102527e8e894501314c38c6e100d4f5d0) Thanks [@CameronFoxly](https://github.com/CameronFoxly)! - Add minimize-16.svg, maximize-16.svg, maximize-24.svg, minimize-24.svg
+
+### Patch Changes
+
+- [#1112](https://github.com/primer/octicons/pull/1112) [`36fd097f`](https://github.com/opf/openproject-octicons/commit/36fd097f885eb22118417458b6d7b5f4c8e8566c) Thanks [@lukasoppermann](https://github.com/lukasoppermann)! - Adjusted alignment of repo delete, locked and push icon in 16px and 24px
+
 ## 19.27.1
 
 ### Patch Changes
