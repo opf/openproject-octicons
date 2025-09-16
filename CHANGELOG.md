@@ -1,5 +1,13 @@
 # Changelog
 
+## 19.29.0
+
+### Minor Changes
+
+- [#123](https://github.com/opf/openproject-octicons/pull/123) [`0aea7e61`](https://github.com/opf/openproject-octicons/commit/0aea7e61848c712fff10ba462379d3a4cc0f2c7d) Thanks [@HDinger](https://github.com/HDinger)! - Add octicon "op-add-widget"
+
+* [#122](https://github.com/opf/openproject-octicons/pull/122) [`90a3a022`](https://github.com/opf/openproject-octicons/commit/90a3a0228fe72fa7539ccb6af60fc94018d4933a) Thanks [@HDinger](https://github.com/HDinger)! - Remove op-attachmentadd octicon
+
 ## 19.28.0
 
 ### Minor Changes
