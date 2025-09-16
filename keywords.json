@@ -149,6 +149,7 @@
   "north-star": ["star", "snowflake", "asterisk"],
   "note": ["card", "paper", "ticket"],
   "octoface": ["octocat", "brand"],
+  "op-add-widget": ["widget"],
   "op-alarm": ["time", "hour", "minute", "clock", "watch"],
   "op-alarm-set": ["time", "hour", "minute", "clock", "watch"],
   "op-auto-date": ["scheduling", "automatic"],
