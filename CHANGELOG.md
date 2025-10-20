@@ -1,5 +1,21 @@
 # Changelog
 
+## 19.30.0
+
+### Minor Changes
+
+- [#1123](https://github.com/primer/octicons/pull/1123) [`1d346555`](https://github.com/opf/openproject-octicons/commit/1d34655547b0ae59211967af830d30ae919e0257) Thanks [@mperrotti](https://github.com/mperrotti)! - Adds an icon for AI chat
+
+* [#1115](https://github.com/primer/octicons/pull/1115) [`59a4abf4`](https://github.com/opf/openproject-octicons/commit/59a4abf40334cbab7ec76e323255b44fd4ea4a95) Thanks [@CameronFoxly](https://github.com/CameronFoxly)! - Save mcp-16.svg, mcp-24.svg
+
+- [#1117](https://github.com/primer/octicons/pull/1117) [`13014409`](https://github.com/opf/openproject-octicons/commit/13014409ff2cc07191a0d98629d088a5f994a49a) Thanks [@arisacoba](https://github.com/arisacoba)! - Add checkbox-fill-16.svg and checkbox-fill-24.svg
+
+### Patch Changes
+
+- [#1122](https://github.com/primer/octicons/pull/1122) [`dcf14c81`](https://github.com/opf/openproject-octicons/commit/dcf14c81ca32e4f1cee017a2815c66458a26b2fa) Thanks [@langermank](https://github.com/langermank)! - Add 16 vscode
+
+* [#1112](https://github.com/primer/octicons/pull/1112) [`36fd097f`](https://github.com/opf/openproject-octicons/commit/36fd097f885eb22118417458b6d7b5f4c8e8566c) Thanks [@lukasoppermann](https://github.com/lukasoppermann)! - Adjusted alignment of repo delete, locked and push icon in 16px and 24px
+
 ## 19.29.0
 
 ### Minor Changes
