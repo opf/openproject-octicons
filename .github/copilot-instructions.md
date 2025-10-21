@@ -179,6 +179,11 @@ This project uses [Changesets](https://github.com/changesets/changesets) for ver
 - Be descriptive about what icons were added/changed
 - Reference issue numbers when applicable
 
+### Coding Standards
+- **Follow upstream GitHub/Primer standards**: This repository follows coding standards defined by the upstream GitHub Primer Octicons project, not the guidelines used by OpenProject core
+- **Rationale**: This approach facilitates upstreaming of changes and reduces the overhead of maintaining two sets of rules within one repository
+- **Exception**: Angular code should follow Angular ESLint rules as defined in the Angular library's configuration
+
 ## Testing
 
 ### Test Structure
