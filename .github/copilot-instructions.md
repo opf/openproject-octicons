@@ -7,8 +7,8 @@ This repository is **OpenProject's fork of GitHub's Primer Octicons**, a set of 
 ### Key Characteristics
 - **Based on**: GitHub's Primer Octicons
 - **Purpose**: Provide SVG icons for OpenProject with additional custom icons
-- **Distribution**: Multiple packages for different platforms (Angular, Ruby, React, Node.js)
-- **Primary Focus**: Angular integration library distributed via npm as `@openproject/octicons-angular`
+- **Distribution**: Multiple packages for different platforms (Angular, Ruby, Node.js)
+- **Main npm Package**: Angular integration library distributed as `@openproject/octicons-angular`
 
 ## Project Structure
 
@@ -19,12 +19,12 @@ openproject-octicons/
 │   ├── *-24.svg           # Optional 24px variant
 │   └── *-12.svg           # Optional 12px variant
 ├── lib/                    # Platform-specific libraries
-│   ├── octicons_angular/  # Angular component library (PRIMARY)
+│   ├── octicons_angular/  # Angular component library
 │   ├── octicons_node/     # Node.js/JavaScript library
 │   ├── octicons_gem/      # Ruby gem
 │   ├── octicons_helper/   # Rails helper
-│   ├── octicons_react/    # React components
-│   └── octicons_styled/   # Styled components
+│   ├── octicons_react/    # React components (not currently published by OpenProject)
+│   └── octicons_styled/   # Styled components (not currently published by OpenProject)
 ├── script/                 # Build and utility scripts
 │   ├── build.js           # Main build script
 │   └── version            # Version management
@@ -36,7 +36,7 @@ openproject-octicons/
 
 ### Primary Technologies
 - **JavaScript/TypeScript**: Build scripts and Angular library
-- **Angular**: Primary integration library (`@openproject/octicons-angular`)
+- **Angular**: Integration library (`@openproject/octicons-angular`)
 - **Ruby**: Ruby gem and Rails helper
 - **SVG**: Icon format
 - **Node.js**: Build system and npm distribution
@@ -122,7 +122,7 @@ npm run svgo
 
 ## Angular Library (`@openproject/octicons-angular`)
 
-This is the **primary integration library** for OpenProject.
+This is the main integration library distributed via npm.
 
 ### Usage Pattern
 ```typescript
@@ -254,18 +254,18 @@ npm test
 ## Important Notes for Copilot
 
 1. **This is a fork**: Changes should be compatible with potential upstream merges
-2. **Angular is primary**: When suggesting code, prioritize Angular patterns
-3. **Icons are the product**: All code exists to support icon distribution
-4. **Changesets are mandatory**: Always remind about changesets for icon changes
-5. **Size variants**: Remember 16px is required, 12px and 24px are optional
-6. **Keywords matter**: Icons are discovered via keywords - always update `keywords.json`
-7. **Accessibility first**: Icons should always support proper ARIA attributes
-8. **Tree-shaking**: Angular components are standalone for optimal bundle size
+2. **Icons are the product**: All code exists to support icon distribution
+3. **Changesets are mandatory**: Always remind about changesets for icon changes
+4. **Size variants**: Remember 16px is required, 12px and 24px are optional
+5. **Keywords matter**: Icons are discovered via keywords - always update `keywords.json`
+6. **Accessibility first**: Icons should always support proper ARIA attributes
+7. **Tree-shaking**: Angular components are standalone for optimal bundle size
+8. **Multiple platforms**: Support Angular, Ruby, and Node.js integrations
 
 ## Package Distribution
 
 ### npm Packages
-- `@openproject/octicons-angular` - Angular components (PRIMARY)
+- `@openproject/octicons-angular` - Angular components
 - Published automatically on release via GitHub Actions
 
 ### Ruby Gems
