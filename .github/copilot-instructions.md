@@ -184,6 +184,10 @@ This project uses [Changesets](https://github.com/changesets/changesets) for ver
 - **Rationale**: This approach facilitates upstreaming of changes and reduces the overhead of maintaining two sets of rules within one repository
 - **Exception**: Angular code should follow Angular ESLint rules as defined in the Angular library's configuration
 
+### Package Managers
+- **Yarn**: Used for managing dependencies in the root project and most libraries (version 1.22.1)
+- **npm**: Used specifically for `octicons_angular`, which is an OpenProject-specific module that doesn't exist in the upstream repository
+
 ## Testing
 
 ### Test Structure
