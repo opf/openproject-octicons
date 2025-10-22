@@ -1,5 +1,11 @@
 # Changelog
 
+## 19.30.1
+
+### Patch Changes
+
+- [#128](https://github.com/opf/openproject-octicons/pull/128) [`a763cb0d`](https://github.com/opf/openproject-octicons/commit/a763cb0d1b1e6503a2db5cecccca9fc9fa924954) Thanks [@HDinger](https://github.com/HDinger)! - Fix angular build
+
 ## 19.30.0
 
 ### Minor Changes
