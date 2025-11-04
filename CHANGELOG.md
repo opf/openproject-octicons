@@ -1,5 +1,13 @@
 # Changelog
 
+## 19.31.0
+
+### Minor Changes
+
+- [#1129](https://github.com/primer/octicons/pull/1129) [`68ebe53b`](https://github.com/opf/openproject-octicons/commit/68ebe53ba972e391fa2b60458e37348636e202ad) Thanks [@lukasoppermann](https://github.com/lukasoppermann)! - Added InboxFill icon
+
+* [#130](https://github.com/opf/openproject-octicons/pull/130) [`3caf51af`](https://github.com/opf/openproject-octicons/commit/3caf51af68e8197f9fd789007b971d9a78b47e93) Thanks [@HDinger](https://github.com/HDinger)! - Add 24px version for op-alarm, op-stopwatch-start, op-stopwatch-stop
+
 ## 19.30.1
 
 ### Patch Changes
