@@ -1,5 +1,11 @@
 # Changelog
 
+## 19.31.1
+
+### Patch Changes
+
+- [#133](https://github.com/opf/openproject-octicons/pull/133) [`496a0a74`](https://github.com/opf/openproject-octicons/commit/496a0a7401fda280c5161542248d629f03b75865) Thanks [@HDinger](https://github.com/HDinger)! - Update op-add-attachment icon
+
 ## 19.31.0
 
 ### Minor Changes
