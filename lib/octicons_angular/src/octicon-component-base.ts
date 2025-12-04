@@ -30,18 +30,14 @@ export class OpOcticonComponentBase {
    * Neither is set when aria-hidden is true (no accessible label provided).
    */
   @HostBinding('attr.aria-label') get ariaLabelAttr() {
-    // Don't set aria-label when aria-hidden is true or when aria-labelledby is set
-    if (this.ariaHidden || this.ariaLabelledBy) {
+    // Don't set aria-label when no label is provided (aria-hidden=true) or when aria-labelledby is set
+    if (!this.ariaLabel || this.ariaLabelledBy) {
       return null;
     }
-    return this.ariaLabel || null;
+    return this.ariaLabel;
   }
 
   @HostBinding('attr.aria-labelledby') get ariaLabelledByAttr() {
-    // Don't set aria-labelledby when aria-hidden is true
-    if (this.ariaHidden) {
-      return null;
-    }
     return this.ariaLabelledBy || null;
   }
 
