@@ -11,3 +11,14 @@ updates:
       interval: "daily"
     allow:
       - dependency-name: "@primer/gatsby-theme-doctocat"
+
+  - package-ecosystem: "npm"
+    directory: "/lib/octicons_angular"
+    schedule:
+      interval: "daily"
+    groups:
+      angular:
+        patterns:
+          - '@angular*'
+    ignore:
+      - dependency-name: "@openproject/octicons"
