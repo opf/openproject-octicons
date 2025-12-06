@@ -19,9 +19,7 @@ describe('Github native icon', () => {
   }));
 
   beforeEach(() => {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
     fixture = TestBed.createComponent(PlusIconComponent);
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
@@ -68,9 +66,7 @@ describe('OpenProject extension icon', () => {
   }));
 
   beforeEach(() => {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
     fixture = TestBed.createComponent(OpBcfIconComponent);
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
