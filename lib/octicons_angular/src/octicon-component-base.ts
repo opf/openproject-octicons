@@ -1,72 +1,75 @@
-import {
-  Directive,
-  Input,
-  HostBinding
-} from '@angular/core';
+import { computed, Directive, input, inject } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { closestNaturalHeight, SVGData, SVGSize, sizeMap } from './helpers';
 
 @Directive({
-  standalone: false
+  host: {
+    'role': 'img',
+    '[attr.fill]': 'fill()',
+    '[attr.id]': 'id()',
+    '[attr.aria-label]': 'ariaLabel()',
+    '[attr.aria-labelledby]': 'ariaLabelledBy()',
+    '[attr.aria-hidden]': 'ariaHidden()',
+    '[attr.tabindex]': 'tabIndex()',
+    '[attr.focusable]': 'focusable()',
+    '[attr.viewBox]': 'viewBox()',
+    '[class.octicon]': 'baseClassName',
+    '[style]': 'style()'
+  },
 })
 export class OpOcticonComponentBase {
-  @Input() size:SVGSize = 'medium';
-  @Input() verticalAlign = 'text-bottom';
-  @Input() title = '';
-  @Input() tabIndex?: number;
+  protected sanitizer = inject(DomSanitizer);
 
-  @HostBinding('attr.role') role = 'img';
-  @HostBinding('attr.fill') @Input() fill = 'currentColor';
-  @HostBinding('attr.id') @Input() id = '';
-  @HostBinding('attr.aria-label') @Input('aria-label') ariaLabel = '';
-  @HostBinding('attr.aria-labelledby') @Input('aria-labelledby') arialabelledby = '';
+  readonly size = input<SVGSize>('medium');
+  readonly verticalAlign = input('text-bottom');
+  readonly title = input<string>();
+  readonly tabIndex = input<number>();
+  readonly fill = input('currentColor');
+  readonly id = input<string>();
+  readonly ariaLabel = input<string>(undefined, { alias: 'aria-label' });
+  readonly ariaLabelledBy = input<string>(undefined, { alias: 'aria-labelledby' });
 
-  @HostBinding('class.octicon') baseClassName = true;
-  @HostBinding('attr.aria-hidden') get ariaHidden() {
-    return !this.ariaLabel;
-  }
-  @HostBinding('attr.tabindex') get tabIndexAttr() {
-    return this.tabIndex;
-  }
-  @HostBinding('attr.focusable') get focusable() {
-    return (this.tabIndex && this.tabIndex >= 0);
-  }
-  @HostBinding('style') get style () {
-    return {
-      display: 'inline-block',
-      'user-select': 'none',
-      'vertical-align': this.verticalAlign,
-      overflow: 'visible',
-      height: `${this.height}px`,
-      width: `${this.width}px`
-    };
-  };
-  @HostBinding('attr.viewBox')
-  get viewBox() {
-    return `0 0 ${this.naturalWidth} ${this.naturalHeight}`;
-  }
+  readonly baseClassName = true;
 
-  get naturalHeight() {
-    return closestNaturalHeight(Object.keys(this.SVGData), this.height)
-  }
+  readonly ariaHidden = computed(() => !this.ariaLabel());
 
-  get height() {
-    return sizeMap[this.size];
-  }
+  readonly focusable = computed(() => {
+    const ti = this.tabIndex();
+    return ti !== undefined && ti >= 0;
+  });
 
-  get naturalWidth() {
-    return this.SVGData[this.naturalHeight].width;
-  }
+  readonly style = computed(() => ({
+    display: 'inline-block',
+    'user-select': 'none',
+    'vertical-align': this.verticalAlign(),
+    overflow: 'visible',
+    height: `${this.height()}px`,
+    width: `${this.width()}px`,
+  }));
 
-  get width() {
-     return this.height * (this.naturalWidth / this.naturalHeight);
-  }
+  readonly viewBox = computed(() =>
+    `0 0 ${this.naturalWidth()} ${this.naturalHeight()}`
+  );
 
-  get paths() {
-    return this.SVGData[this.naturalHeight].paths;
-  }
+  readonly naturalHeight = computed(() =>
+    closestNaturalHeight(Object.keys(this.SVGData), this.height())
+  );
+
+  readonly height = computed(() =>
+    sizeMap[this.size()]
+  );
+
+  readonly naturalWidth = computed(() =>
+    this.SVGData[this.naturalHeight()].width
+  );
+
+  readonly width = computed(() =>
+    this.height() * (this.naturalWidth() / this.naturalHeight())
+  );
+
+  readonly paths = computed(() =>
+    this.SVGData[this.naturalHeight()].paths
+  );
 
   protected SVGData:SVGData = {};
-
-   constructor(protected sanitizer:DomSanitizer) {}
 }
