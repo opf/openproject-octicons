@@ -111,3 +111,71 @@ describe('rendering without Angular', () => {
     expect(rendered).toContain('</svg>');
   });
 });
+
+describe('ARIA attributes', () => {
+  let component: PlusIconComponent;
+  let fixture: ComponentFixture<PlusIconComponent>;
+
+  beforeEach(waitForAsync(() => {
+    TestBed.configureTestingModule({imports: [PlusIconComponent]}).compileComponents();
+  }));
+
+  beforeEach(() => {
+    fixture = TestBed.createComponent(PlusIconComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it('should not render aria-label when undefined', () => {
+    fixture.detectChanges();
+
+    const iconElement: HTMLElement = fixture.nativeElement;
+    expect(iconElement.getAttribute('aria-label')).toBeNull();
+  });
+
+  it('should render aria-label when set to non-empty value', () => {
+    component.ariaLabel = 'Add item';
+    fixture.detectChanges();
+
+    const iconElement: HTMLElement = fixture.nativeElement;
+    expect(iconElement.getAttribute('aria-label')).toEqual('Add item');
+  });
+
+  it('should not render aria-labelledby when undefined', () => {
+    fixture.detectChanges();
+
+    const iconElement: HTMLElement = fixture.nativeElement;
+    expect(iconElement.getAttribute('aria-labelledby')).toBeNull();
+  });
+
+  it('should render aria-labelledby when set to non-empty value', () => {
+    component.ariaLabelledBy = 'my-label-id';
+    fixture.detectChanges();
+
+    const iconElement: HTMLElement = fixture.nativeElement;
+    expect(iconElement.getAttribute('aria-labelledby')).toEqual('my-label-id');
+  });
+
+  it('should not render id when undefined', () => {
+    fixture.detectChanges();
+
+    const iconElement: HTMLElement = fixture.nativeElement;
+    expect(iconElement.getAttribute('id')).toBeNull();
+  });
+
+  it('should render id when set to non-empty value', () => {
+    component.id = 'my-icon-id';
+    fixture.detectChanges();
+
+    const iconElement: HTMLElement = fixture.nativeElement;
+    expect(iconElement.getAttribute('id')).toEqual('my-icon-id');
+  });
+
+  it('should set aria-hidden to false when aria-label is set', () => {
+    component.ariaLabel = 'Add item';
+    fixture.detectChanges();
+
+    const iconElement: HTMLElement = fixture.nativeElement;
+    expect(iconElement.getAttribute('aria-hidden')).toEqual('false');
+  });
+});
