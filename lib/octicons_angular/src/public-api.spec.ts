@@ -255,8 +255,8 @@ describe('tabindex attribute', () => {
     expect(iconElement.getAttribute('tabindex')).toBeNull();
   });
 
-  it('should render tabindex when set using tabindex alias', () => {
-    fixture.componentRef.setInput('tabindex', 0);
+  it('should render tabindex when set using tabIndex', () => {
+    fixture.componentRef.setInput('tabIndex', 0);
     fixture.detectChanges();
 
     const iconElement: HTMLElement = fixture.nativeElement;
@@ -264,7 +264,7 @@ describe('tabindex attribute', () => {
   });
 
   it('should render tabindex when set to positive value', () => {
-    fixture.componentRef.setInput('tabindex', 1);
+    fixture.componentRef.setInput('tabIndex', 1);
     fixture.detectChanges();
 
     const iconElement: HTMLElement = fixture.nativeElement;
@@ -272,7 +272,7 @@ describe('tabindex attribute', () => {
   });
 
   it('should render tabindex when set to negative value', () => {
-    fixture.componentRef.setInput('tabindex', -1);
+    fixture.componentRef.setInput('tabIndex', -1);
     fixture.detectChanges();
 
     const iconElement: HTMLElement = fixture.nativeElement;
