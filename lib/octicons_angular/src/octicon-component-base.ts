@@ -7,8 +7,8 @@ import { closestNaturalHeight, SVGData, SVGSize, sizeMap } from './helpers';
     'role': 'img',
     '[attr.fill]': 'fill()',
     '[attr.id]': 'id()',
-    '[attr.aria-label]': 'ariaLabel()',
-    '[attr.aria-labelledby]': 'ariaLabelledBy()',
+    '[attr.aria-label]': 'ariaLabelAttr()',
+    '[attr.aria-labelledby]': 'ariaLabelledByAttr()',
     '[attr.aria-hidden]': 'ariaHidden()',
     '[attr.tabindex]': 'tabIndex()',
     '[attr.focusable]': 'focusable()',
@@ -31,7 +31,27 @@ export class OpOcticonComponentBase {
 
   readonly baseClassName = true;
 
-  readonly ariaHidden = computed(() => !this.ariaLabel());
+  /**
+   * aria-hidden is true when neither aria-label nor aria-labelledby is provided
+   */
+  readonly ariaHidden = computed(() => !this.ariaLabel() && !this.ariaLabelledBy());
+
+  /**
+   * aria-labelledby takes precedence over aria-label when both are provided.
+   * This follows the ARIA specification where aria-labelledby overrides all other naming sources.
+   * Neither is set when aria-hidden is true (no accessible label provided).
+   */
+  readonly ariaLabelAttr = computed(() => {
+    // Don't set aria-label when aria-labelledby is set (mutual exclusivity)
+    if (this.ariaLabelledBy()) {
+      return null;
+    }
+    return this.ariaLabel() || null;
+  });
+
+  readonly ariaLabelledByAttr = computed(() => {
+    return this.ariaLabelledBy() || null;
+  });
 
   readonly focusable = computed(() => {
     const ti = this.tabIndex();
