@@ -214,4 +214,40 @@ describe('ARIA attributes', () => {
     expect(iconElement.getAttribute('aria-label')).toBeNull();
     expect(iconElement.getAttribute('aria-labelledby')).toBeNull();
   });
+
+  it('should not render aria-label when set to empty string', () => {
+    fixture.componentRef.setInput('aria-label', '');
+    fixture.detectChanges();
+
+    const iconElement: HTMLElement = fixture.nativeElement;
+    expect(iconElement.getAttribute('aria-label')).toBeNull();
+    expect(iconElement.getAttribute('aria-hidden')).toEqual('true');
+  });
+
+  it('should not render aria-labelledby when set to empty string', () => {
+    fixture.componentRef.setInput('aria-labelledby', '');
+    fixture.detectChanges();
+
+    const iconElement: HTMLElement = fixture.nativeElement;
+    expect(iconElement.getAttribute('aria-labelledby')).toBeNull();
+    expect(iconElement.getAttribute('aria-hidden')).toEqual('true');
+  });
+
+  it('should treat empty string aria-label same as undefined', () => {
+    fixture.componentRef.setInput('aria-label', '');
+    fixture.detectChanges();
+
+    const iconElement: HTMLElement = fixture.nativeElement;
+    expect(iconElement.getAttribute('aria-label')).toBeNull();
+    expect(iconElement.getAttribute('aria-hidden')).toEqual('true');
+  });
+
+  it('should treat empty string aria-labelledby same as undefined', () => {
+    fixture.componentRef.setInput('aria-labelledby', '');
+    fixture.detectChanges();
+
+    const iconElement: HTMLElement = fixture.nativeElement;
+    expect(iconElement.getAttribute('aria-labelledby')).toBeNull();
+    expect(iconElement.getAttribute('aria-hidden')).toEqual('true');
+  });
 });
