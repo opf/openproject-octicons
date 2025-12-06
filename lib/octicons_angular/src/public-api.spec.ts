@@ -38,7 +38,7 @@ describe('Github native icon', () => {
     const iconElement: HTMLElement = fixture.nativeElement;
     expect(iconElement.children[0].tagName.toLowerCase()).toEqual('path');
 
-    component.title = 'Some title';
+    fixture.componentRef.setInput('title', 'Some title');
     fixture.detectChanges();
 
     expect(iconElement.children[0].tagName.toLowerCase()).toEqual('title');
@@ -134,7 +134,7 @@ describe('ARIA attributes', () => {
   });
 
   it('should render aria-label when set to non-empty value', () => {
-    component.ariaLabel = 'Add item';
+    fixture.componentRef.setInput('aria-label', 'Add item');
     fixture.detectChanges();
 
     const iconElement: HTMLElement = fixture.nativeElement;
@@ -149,7 +149,7 @@ describe('ARIA attributes', () => {
   });
 
   it('should render aria-labelledby when set to non-empty value', () => {
-    component.ariaLabelledBy = 'my-label-id';
+    fixture.componentRef.setInput('aria-labelledby', 'my-label-id');
     fixture.detectChanges();
 
     const iconElement: HTMLElement = fixture.nativeElement;
@@ -164,7 +164,7 @@ describe('ARIA attributes', () => {
   });
 
   it('should render id when set to non-empty value', () => {
-    component.id = 'my-icon-id';
+    fixture.componentRef.setInput('id', 'my-icon-id');
     fixture.detectChanges();
 
     const iconElement: HTMLElement = fixture.nativeElement;
@@ -172,7 +172,7 @@ describe('ARIA attributes', () => {
   });
 
   it('should set aria-hidden to false when aria-label is set', () => {
-    component.ariaLabel = 'Add item';
+    fixture.componentRef.setInput('aria-label', 'Add item');
     fixture.detectChanges();
 
     const iconElement: HTMLElement = fixture.nativeElement;
