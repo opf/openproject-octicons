@@ -178,4 +178,40 @@ describe('ARIA attributes', () => {
     const iconElement: HTMLElement = fixture.nativeElement;
     expect(iconElement.getAttribute('aria-hidden')).toEqual('false');
   });
+
+  it('should set aria-hidden to true when neither aria-label nor aria-labelledby is set', () => {
+    fixture.detectChanges();
+
+    const iconElement: HTMLElement = fixture.nativeElement;
+    expect(iconElement.getAttribute('aria-hidden')).toEqual('true');
+  });
+
+  it('should set aria-hidden to false when aria-labelledby is set', () => {
+    fixture.componentRef.setInput('aria-labelledby', 'my-label-id');
+    fixture.detectChanges();
+
+    const iconElement: HTMLElement = fixture.nativeElement;
+    expect(iconElement.getAttribute('aria-hidden')).toEqual('false');
+  });
+
+  it('should prefer aria-labelledby over aria-label when both are provided', () => {
+    fixture.componentRef.setInput('aria-label', 'Add item');
+    fixture.componentRef.setInput('aria-labelledby', 'my-label-id');
+    fixture.detectChanges();
+
+    const iconElement: HTMLElement = fixture.nativeElement;
+    expect(iconElement.getAttribute('aria-labelledby')).toEqual('my-label-id');
+    expect(iconElement.getAttribute('aria-label')).toBeNull();
+    expect(iconElement.getAttribute('aria-hidden')).toEqual('false');
+  });
+
+  it('should not render aria-label or aria-labelledby when aria-hidden is true', () => {
+    // aria-hidden is true when both aria-label and aria-labelledby are not set
+    fixture.detectChanges();
+
+    const iconElement: HTMLElement = fixture.nativeElement;
+    expect(iconElement.getAttribute('aria-hidden')).toEqual('true');
+    expect(iconElement.getAttribute('aria-label')).toBeNull();
+    expect(iconElement.getAttribute('aria-labelledby')).toBeNull();
+  });
 });
