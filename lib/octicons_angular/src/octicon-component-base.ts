@@ -23,7 +23,7 @@ export class OpOcticonComponentBase {
   readonly size = input<SVGSize>('medium');
   readonly verticalAlign = input('text-bottom');
   readonly title = input<string>();
-  readonly tabIndex = input<number>();
+  readonly tabIndex = input<number>(undefined, { alias: 'tabindex' });
   readonly fill = input('currentColor');
   readonly id = input<string>();
   readonly ariaLabel = input<string>(undefined, { alias: 'aria-label' });

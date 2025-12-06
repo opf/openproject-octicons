@@ -251,3 +251,65 @@ describe('ARIA attributes', () => {
     expect(iconElement.getAttribute('aria-hidden')).toEqual('true');
   });
 });
+
+describe('tabindex attribute', () => {
+  let component: PlusIconComponent;
+  let fixture: ComponentFixture<PlusIconComponent>;
+
+  beforeEach(waitForAsync(() => {
+    TestBed.configureTestingModule({imports: [PlusIconComponent]}).compileComponents();
+  }));
+
+  beforeEach(() => {
+    fixture = TestBed.createComponent(PlusIconComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it('should not render tabindex when undefined', () => {
+    fixture.detectChanges();
+
+    const iconElement: HTMLElement = fixture.nativeElement;
+    expect(iconElement.getAttribute('tabindex')).toBeNull();
+  });
+
+  it('should render tabindex when set using tabindex alias', () => {
+    fixture.componentRef.setInput('tabindex', 0);
+    fixture.detectChanges();
+
+    const iconElement: HTMLElement = fixture.nativeElement;
+    expect(iconElement.getAttribute('tabindex')).toEqual('0');
+  });
+
+  it('should render tabindex when set to positive value', () => {
+    fixture.componentRef.setInput('tabindex', 1);
+    fixture.detectChanges();
+
+    const iconElement: HTMLElement = fixture.nativeElement;
+    expect(iconElement.getAttribute('tabindex')).toEqual('1');
+  });
+
+  it('should render tabindex when set to negative value', () => {
+    fixture.componentRef.setInput('tabindex', -1);
+    fixture.detectChanges();
+
+    const iconElement: HTMLElement = fixture.nativeElement;
+    expect(iconElement.getAttribute('tabindex')).toEqual('-1');
+  });
+
+  it('should set focusable to true when tabindex is 0 or positive', () => {
+    fixture.componentRef.setInput('tabindex', 0);
+    fixture.detectChanges();
+
+    const iconElement: HTMLElement = fixture.nativeElement;
+    expect(iconElement.getAttribute('focusable')).toEqual('true');
+  });
+
+  it('should set focusable to false when tabindex is negative', () => {
+    fixture.componentRef.setInput('tabindex', -1);
+    fixture.detectChanges();
+
+    const iconElement: HTMLElement = fixture.nativeElement;
+    expect(iconElement.getAttribute('focusable')).toEqual('false');
+  });
+});
