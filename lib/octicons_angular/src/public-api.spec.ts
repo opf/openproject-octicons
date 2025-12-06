@@ -1,21 +1,23 @@
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import {
   PlusIconComponent,
   plusIconData,
   OpBcfIconComponent,
   opBcfIconData,
-  LogIconComponent,
   logIconData,
 
   toDOMString,
+  SVGData,
 } from './public-api';
 
 describe('Github native icon', () => {
-  let component: PlusIconComponent;
-  let fixture: ComponentFixture<PlusIconComponent>;
+  let component:PlusIconComponent;
+  let fixture:ComponentFixture<PlusIconComponent>;
 
   beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({imports: [PlusIconComponent]}).compileComponents();
+    void TestBed.configureTestingModule({imports: [PlusIconComponent]}).compileComponents();
   }));
 
   beforeEach(() => {
@@ -29,13 +31,15 @@ describe('Github native icon', () => {
   });
 
   it('should render the svg', () => {
-    const iconElement: HTMLElement = fixture.nativeElement;
+    const iconElement:HTMLElement = fixture.nativeElement;
+
     expect(iconElement.children[0].tagName.toLowerCase()).toEqual('path');
     expect(iconElement.children[0].getAttribute('d')).toBeTruthy();
   });
 
   it('should render the title', () => {
-    const iconElement: HTMLElement = fixture.nativeElement;
+    const iconElement:HTMLElement = fixture.nativeElement;
+
     expect(iconElement.children[0].tagName.toLowerCase()).toEqual('path');
 
     fixture.componentRef.setInput('title', 'Some title');
@@ -54,11 +58,11 @@ describe('Github native icon', () => {
 });
 
 describe('OpenProject extension icon', () => {
-  let component: OpBcfIconComponent;
-  let fixture: ComponentFixture<OpBcfIconComponent>;
+  let component:OpBcfIconComponent;
+  let fixture:ComponentFixture<OpBcfIconComponent>;
 
   beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({imports: [OpBcfIconComponent]}).compileComponents();
+    void TestBed.configureTestingModule({imports: [OpBcfIconComponent]}).compileComponents();
   }));
 
   beforeEach(() => {
@@ -67,12 +71,13 @@ describe('OpenProject extension icon', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('OpBcfIconComponent should create', () => {
     expect(component).toBeDefined();
   });
 
-  it('should render the svg', () => {
-    const iconElement: HTMLElement = fixture.nativeElement;
+  it('OpBcfIconComponent should render the svg', () => {
+    const iconElement:HTMLElement = fixture.nativeElement;
+
     expect(iconElement.children[0].tagName.toLowerCase()).toEqual('path');
     expect(iconElement.children[0].getAttribute('d')).toBeTruthy();
     expect(iconElement.children[1].tagName.toLowerCase()).toEqual('path');
@@ -81,7 +86,7 @@ describe('OpenProject extension icon', () => {
     expect(iconElement.children[2].getAttribute('d')).toBeTruthy();
   });
 
-  it('should export the SVG data', () => {
+  it('OpBcfIconComponent should export the SVG data', () => {
     expect(opBcfIconData).toBeDefined();
     expect(opBcfIconData['16']).toBeDefined();
     expect(opBcfIconData['16'].paths.length).toEqual(3);
@@ -90,21 +95,24 @@ describe('OpenProject extension icon', () => {
 
 describe('rendering without Angular', () => {
   it('should render the SVG', () => {
-    const rendered = toDOMString(logIconData);
+    const rendered = toDOMString(logIconData as SVGData);
+
     expect(rendered).toContain('<svg');
     expect(rendered).toContain(`<path d="${logIconData[24].paths[0]}"></path>`);
     expect(rendered).toContain('</svg>');
   });
 
   it('should render the small SVG', () => {
-    const rendered = toDOMString(logIconData, 'small');
+    const rendered = toDOMString(logIconData as SVGData, 'small');
+
     expect(rendered).toContain('<svg');
     expect(rendered).toContain(`<path d="${logIconData[16].paths[0]}"></path>`);
     expect(rendered).toContain('</svg>');
   });
 
   it('should render the SVG attributes', () => {
-    const rendered = toDOMString(logIconData, 'medium', { extra: '1' });
+    const rendered = toDOMString(logIconData as SVGData, 'medium', { extra: '1' });
+
     expect(rendered).toContain('<svg');
     expect(rendered).toContain('extra="1"');
     expect(rendered).toContain(`<path d="${logIconData[24].paths[0]}"></path>`);
@@ -113,23 +121,22 @@ describe('rendering without Angular', () => {
 });
 
 describe('ARIA attributes', () => {
-  let component: PlusIconComponent;
-  let fixture: ComponentFixture<PlusIconComponent>;
+  let fixture:ComponentFixture<PlusIconComponent>;
 
   beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({imports: [PlusIconComponent]}).compileComponents();
+    void TestBed.configureTestingModule({imports: [PlusIconComponent]}).compileComponents();
   }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(PlusIconComponent);
-    component = fixture.componentInstance;
     fixture.detectChanges();
   });
 
   it('should not render aria-label when undefined', () => {
     fixture.detectChanges();
 
-    const iconElement: HTMLElement = fixture.nativeElement;
+    const iconElement:HTMLElement = fixture.nativeElement;
+
     expect(iconElement.getAttribute('aria-label')).toBeNull();
   });
 
@@ -137,14 +144,16 @@ describe('ARIA attributes', () => {
     fixture.componentRef.setInput('aria-label', 'Add item');
     fixture.detectChanges();
 
-    const iconElement: HTMLElement = fixture.nativeElement;
+    const iconElement:HTMLElement = fixture.nativeElement;
+
     expect(iconElement.getAttribute('aria-label')).toEqual('Add item');
   });
 
   it('should not render aria-labelledby when undefined', () => {
     fixture.detectChanges();
 
-    const iconElement: HTMLElement = fixture.nativeElement;
+    const iconElement:HTMLElement = fixture.nativeElement;
+
     expect(iconElement.getAttribute('aria-labelledby')).toBeNull();
   });
 
@@ -152,14 +161,16 @@ describe('ARIA attributes', () => {
     fixture.componentRef.setInput('aria-labelledby', 'my-label-id');
     fixture.detectChanges();
 
-    const iconElement: HTMLElement = fixture.nativeElement;
+    const iconElement:HTMLElement = fixture.nativeElement;
+
     expect(iconElement.getAttribute('aria-labelledby')).toEqual('my-label-id');
   });
 
   it('should not render id when undefined', () => {
     fixture.detectChanges();
 
-    const iconElement: HTMLElement = fixture.nativeElement;
+    const iconElement:HTMLElement = fixture.nativeElement;
+
     expect(iconElement.getAttribute('id')).toBeNull();
   });
 
@@ -167,7 +178,8 @@ describe('ARIA attributes', () => {
     fixture.componentRef.setInput('id', 'my-icon-id');
     fixture.detectChanges();
 
-    const iconElement: HTMLElement = fixture.nativeElement;
+    const iconElement:HTMLElement = fixture.nativeElement;
+
     expect(iconElement.getAttribute('id')).toEqual('my-icon-id');
   });
 
@@ -175,14 +187,16 @@ describe('ARIA attributes', () => {
     fixture.componentRef.setInput('aria-label', 'Add item');
     fixture.detectChanges();
 
-    const iconElement: HTMLElement = fixture.nativeElement;
+    const iconElement:HTMLElement = fixture.nativeElement;
+
     expect(iconElement.getAttribute('aria-hidden')).toEqual('false');
   });
 
   it('should set aria-hidden to true when neither aria-label nor aria-labelledby is set', () => {
     fixture.detectChanges();
 
-    const iconElement: HTMLElement = fixture.nativeElement;
+    const iconElement:HTMLElement = fixture.nativeElement;
+
     expect(iconElement.getAttribute('aria-hidden')).toEqual('true');
   });
 
@@ -190,7 +204,8 @@ describe('ARIA attributes', () => {
     fixture.componentRef.setInput('aria-labelledby', 'my-label-id');
     fixture.detectChanges();
 
-    const iconElement: HTMLElement = fixture.nativeElement;
+    const iconElement:HTMLElement = fixture.nativeElement;
+
     expect(iconElement.getAttribute('aria-hidden')).toEqual('false');
   });
 
@@ -199,7 +214,8 @@ describe('ARIA attributes', () => {
     fixture.componentRef.setInput('aria-labelledby', 'my-label-id');
     fixture.detectChanges();
 
-    const iconElement: HTMLElement = fixture.nativeElement;
+    const iconElement:HTMLElement = fixture.nativeElement;
+
     expect(iconElement.getAttribute('aria-labelledby')).toEqual('my-label-id');
     expect(iconElement.getAttribute('aria-label')).toBeNull();
     expect(iconElement.getAttribute('aria-hidden')).toEqual('false');
@@ -209,7 +225,8 @@ describe('ARIA attributes', () => {
     // aria-hidden is true when both aria-label and aria-labelledby are not set
     fixture.detectChanges();
 
-    const iconElement: HTMLElement = fixture.nativeElement;
+    const iconElement:HTMLElement = fixture.nativeElement;
+
     expect(iconElement.getAttribute('aria-hidden')).toEqual('true');
     expect(iconElement.getAttribute('aria-label')).toBeNull();
     expect(iconElement.getAttribute('aria-labelledby')).toBeNull();
@@ -219,7 +236,8 @@ describe('ARIA attributes', () => {
     fixture.componentRef.setInput('aria-label', '');
     fixture.detectChanges();
 
-    const iconElement: HTMLElement = fixture.nativeElement;
+    const iconElement:HTMLElement = fixture.nativeElement;
+
     expect(iconElement.getAttribute('aria-label')).toBeNull();
     expect(iconElement.getAttribute('aria-hidden')).toEqual('true');
   });
@@ -228,30 +246,30 @@ describe('ARIA attributes', () => {
     fixture.componentRef.setInput('aria-labelledby', '');
     fixture.detectChanges();
 
-    const iconElement: HTMLElement = fixture.nativeElement;
+    const iconElement:HTMLElement = fixture.nativeElement;
+
     expect(iconElement.getAttribute('aria-labelledby')).toBeNull();
     expect(iconElement.getAttribute('aria-hidden')).toEqual('true');
   });
 });
 
 describe('tabindex attribute', () => {
-  let component: PlusIconComponent;
-  let fixture: ComponentFixture<PlusIconComponent>;
+  let fixture:ComponentFixture<PlusIconComponent>;
 
   beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({imports: [PlusIconComponent]}).compileComponents();
+    void TestBed.configureTestingModule({imports: [PlusIconComponent]}).compileComponents();
   }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(PlusIconComponent);
-    component = fixture.componentInstance;
     fixture.detectChanges();
   });
 
   it('should not render tabindex when undefined', () => {
     fixture.detectChanges();
 
-    const iconElement: HTMLElement = fixture.nativeElement;
+    const iconElement:HTMLElement = fixture.nativeElement;
+
     expect(iconElement.getAttribute('tabindex')).toBeNull();
   });
 
@@ -259,7 +277,8 @@ describe('tabindex attribute', () => {
     fixture.componentRef.setInput('tabIndex', 0);
     fixture.detectChanges();
 
-    const iconElement: HTMLElement = fixture.nativeElement;
+    const iconElement:HTMLElement = fixture.nativeElement;
+
     expect(iconElement.getAttribute('tabindex')).toEqual('0');
   });
 
@@ -267,7 +286,8 @@ describe('tabindex attribute', () => {
     fixture.componentRef.setInput('tabIndex', 1);
     fixture.detectChanges();
 
-    const iconElement: HTMLElement = fixture.nativeElement;
+    const iconElement:HTMLElement = fixture.nativeElement;
+
     expect(iconElement.getAttribute('tabindex')).toEqual('1');
   });
 
@@ -275,29 +295,29 @@ describe('tabindex attribute', () => {
     fixture.componentRef.setInput('tabIndex', -1);
     fixture.detectChanges();
 
-    const iconElement: HTMLElement = fixture.nativeElement;
+    const iconElement:HTMLElement = fixture.nativeElement;
+
     expect(iconElement.getAttribute('tabindex')).toEqual('-1');
   });
 });
 
 describe('role attribute', () => {
-  let component: PlusIconComponent;
-  let fixture: ComponentFixture<PlusIconComponent>;
+  let fixture:ComponentFixture<PlusIconComponent>;
 
   beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({imports: [PlusIconComponent]}).compileComponents();
+    void TestBed.configureTestingModule({imports: [PlusIconComponent]}).compileComponents();
   }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(PlusIconComponent);
-    component = fixture.componentInstance;
     fixture.detectChanges();
   });
 
   it('should not render role when neither aria-label nor aria-labelledby is set', () => {
     fixture.detectChanges();
 
-    const iconElement: HTMLElement = fixture.nativeElement;
+    const iconElement:HTMLElement = fixture.nativeElement;
+
     expect(iconElement.getAttribute('role')).toBeNull();
     expect(iconElement.getAttribute('aria-hidden')).toEqual('true');
   });
@@ -306,7 +326,8 @@ describe('role attribute', () => {
     fixture.componentRef.setInput('aria-label', 'Add item');
     fixture.detectChanges();
 
-    const iconElement: HTMLElement = fixture.nativeElement;
+    const iconElement:HTMLElement = fixture.nativeElement;
+
     expect(iconElement.getAttribute('role')).toEqual('img');
     expect(iconElement.getAttribute('aria-hidden')).toEqual('false');
   });
@@ -315,7 +336,8 @@ describe('role attribute', () => {
     fixture.componentRef.setInput('aria-labelledby', 'my-label-id');
     fixture.detectChanges();
 
-    const iconElement: HTMLElement = fixture.nativeElement;
+    const iconElement:HTMLElement = fixture.nativeElement;
+
     expect(iconElement.getAttribute('role')).toEqual('img');
     expect(iconElement.getAttribute('aria-hidden')).toEqual('false');
   });
@@ -324,7 +346,8 @@ describe('role attribute', () => {
     // aria-hidden is true by default when neither aria-label nor aria-labelledby is set
     fixture.detectChanges();
 
-    const iconElement: HTMLElement = fixture.nativeElement;
+    const iconElement:HTMLElement = fixture.nativeElement;
+
     expect(iconElement.getAttribute('role')).toBeNull();
     expect(iconElement.getAttribute('aria-hidden')).toEqual('true');
   });
@@ -332,7 +355,8 @@ describe('role attribute', () => {
   it('should ensure role="img" and aria-hidden="true" are mutually exclusive', () => {
     // Test 1: No labels - should have aria-hidden, no role
     fixture.detectChanges();
-    let iconElement: HTMLElement = fixture.nativeElement;
+    let iconElement:HTMLElement = fixture.nativeElement;
+
     expect(iconElement.getAttribute('role')).toBeNull();
     expect(iconElement.getAttribute('aria-hidden')).toEqual('true');
 
@@ -340,6 +364,7 @@ describe('role attribute', () => {
     fixture.componentRef.setInput('aria-label', 'Add item');
     fixture.detectChanges();
     iconElement = fixture.nativeElement;
+
     expect(iconElement.getAttribute('role')).toEqual('img');
     expect(iconElement.getAttribute('aria-hidden')).toEqual('false');
 
@@ -347,6 +372,7 @@ describe('role attribute', () => {
     fixture.componentRef.setInput('aria-label', undefined);
     fixture.detectChanges();
     iconElement = fixture.nativeElement;
+
     expect(iconElement.getAttribute('role')).toBeNull();
     expect(iconElement.getAttribute('aria-hidden')).toEqual('true');
   });
