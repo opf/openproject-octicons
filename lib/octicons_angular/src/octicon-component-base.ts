@@ -1,4 +1,4 @@
-import { computed, Directive, input } from '@angular/core';
+import { computed, Directive, input, inject } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { closestNaturalHeight, SVGData, SVGSize, sizeMap } from './helpers';
 
@@ -18,6 +18,8 @@ import { closestNaturalHeight, SVGData, SVGSize, sizeMap } from './helpers';
   },
 })
 export class OpOcticonComponentBase {
+  protected sanitizer = inject(DomSanitizer);
+
   readonly size = input<SVGSize>('medium');
   readonly verticalAlign = input('text-bottom');
   readonly title = input<string>();
@@ -70,6 +72,4 @@ export class OpOcticonComponentBase {
   );
 
   protected SVGData:SVGData = {};
-
-   constructor(protected sanitizer:DomSanitizer) {}
 }
