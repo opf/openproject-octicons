@@ -7,6 +7,7 @@ import {
   logIconData,
 
   toDOMString,
+  SVGData,
 } from './public-api';
 
 describe('Github native icon', () => {
@@ -14,11 +15,13 @@ describe('Github native icon', () => {
   let fixture:ComponentFixture<PlusIconComponent>;
 
   beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({imports: [PlusIconComponent]}).compileComponents();
+    void TestBed.configureTestingModule({imports: [PlusIconComponent]}).compileComponents();
   }));
 
   beforeEach(() => {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
     fixture = TestBed.createComponent(PlusIconComponent);
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
@@ -28,6 +31,7 @@ describe('Github native icon', () => {
   });
 
   it('should render the svg', () => {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     const iconElement:HTMLElement = fixture.nativeElement;
 
     expect(iconElement.children[0].tagName.toLowerCase()).toEqual('path');
@@ -35,6 +39,7 @@ describe('Github native icon', () => {
   });
 
   it('should render the title', () => {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     const iconElement:HTMLElement = fixture.nativeElement;
 
     expect(iconElement.children[0].tagName.toLowerCase()).toEqual('path');
@@ -59,20 +64,23 @@ describe('OpenProject extension icon', () => {
   let fixture:ComponentFixture<OpBcfIconComponent>;
 
   beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({imports: [OpBcfIconComponent]}).compileComponents();
+    void TestBed.configureTestingModule({imports: [OpBcfIconComponent]}).compileComponents();
   }));
 
   beforeEach(() => {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
     fixture = TestBed.createComponent(OpBcfIconComponent);
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('OpBcfIconComponent should create', () => {
     expect(component).toBeDefined();
   });
 
-  it('should render the svg', () => {
+  it('OpBcfIconComponent should render the svg', () => {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     const iconElement:HTMLElement = fixture.nativeElement;
 
     expect(iconElement.children[0].tagName.toLowerCase()).toEqual('path');
@@ -83,7 +91,7 @@ describe('OpenProject extension icon', () => {
     expect(iconElement.children[2].getAttribute('d')).toBeTruthy();
   });
 
-  it('should export the SVG data', () => {
+  it('OpBcfIconComponent should export the SVG data', () => {
     expect(opBcfIconData).toBeDefined();
     expect(opBcfIconData['16']).toBeDefined();
     expect(opBcfIconData['16'].paths.length).toEqual(3);
@@ -92,7 +100,7 @@ describe('OpenProject extension icon', () => {
 
 describe('rendering without Angular', () => {
   it('should render the SVG', () => {
-    const rendered = toDOMString(logIconData);
+    const rendered = toDOMString(logIconData as SVGData);
 
     expect(rendered).toContain('<svg');
     expect(rendered).toContain(`<path d="${logIconData[24].paths[0]}"></path>`);
@@ -100,7 +108,7 @@ describe('rendering without Angular', () => {
   });
 
   it('should render the small SVG', () => {
-    const rendered = toDOMString(logIconData, 'small');
+    const rendered = toDOMString(logIconData as SVGData, 'small');
 
     expect(rendered).toContain('<svg');
     expect(rendered).toContain(`<path d="${logIconData[16].paths[0]}"></path>`);
@@ -108,7 +116,7 @@ describe('rendering without Angular', () => {
   });
 
   it('should render the SVG attributes', () => {
-    const rendered = toDOMString(logIconData, 'medium', { extra: '1' });
+    const rendered = toDOMString(logIconData as SVGData, 'medium', { extra: '1' });
 
     expect(rendered).toContain('<svg');
     expect(rendered).toContain('extra="1"');
