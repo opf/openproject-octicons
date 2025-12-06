@@ -5,15 +5,22 @@ on:
     types: [published]
   workflow_dispatch:
 
+permissions:
+  id-token: write # Required for OIDC
+  contents: read
+  checks: write
+  statuses: write
+
+name: Octicons Publish
 jobs:
   setup:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
-      - uses: actions/setup-node@master
+      - uses: actions/setup-node@v6
         with:
-          node-version: '18.x'
-      - run: npm i
+          node-version: 24
+      - run: npm install
       - run: npm run build
       - run: cp -r icons lib/build/svg
       - uses: actions/upload-artifact@v4
@@ -53,8 +60,6 @@ jobs:
           name: octicons_gem
           path: ./lib/octicons_helper/vendor/cache
       - uses: ./.github/actions/build_ruby
-        env:
-          RUBYGEMS_TOKEN: ${{ secrets.RUBYGEMS_TOKEN }}
         with:
           args: octicons_helper
 #  node:
@@ -67,8 +72,6 @@ jobs:
 #          name: octicons
 #          path: ./lib/build
 #      - uses: ./.github/actions/build_node
-#        env:
-#          NPM_AUTH_TOKEN_SHARED: ${{ secrets.NPM_AUTH_TOKEN_SHARED }}
 #        with:
 #          args: octicons_node
   angular:
@@ -80,8 +83,7 @@ jobs:
         with:
           name: octicons
           path: ./lib/build
-      - uses: ./.github/actions/build_angular
-        env:
-          NPM_AUTH_TOKEN_SHARED: ${{ secrets.NPM_AUTH_TOKEN_SHARED }}
+      - name: Build @openproject/octicons-angular
+        uses: ./.github/actions/build_angular
         with:
           args: octicons_angular
