@@ -1,37 +1,44 @@
-import {
-  Directive,
-  Input,
-  HostBinding
-} from '@angular/core';
+import { Directive, Input} from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { closestNaturalHeight, SVGData, SVGSize, sizeMap } from './helpers';
 
 @Directive({
-  standalone: false
+  host: {
+    'role': 'img',
+    '[attr.fill]': 'fill',
+    '[attr.id]': 'id',
+    '[attr.aria-label]': 'ariaLabel',
+    '[attr.aria-labelledby]': 'ariaLabelledBy',
+    '[attr.aria-hidden]': 'ariaHidden',
+    '[attr.tabindex]': 'tabIndexAttr',
+    '[attr.focusable]': 'focusable',
+    '[attr.viewBox]': 'viewBox',
+    '[class.octicon]': 'baseClassName',
+    '[style]': 'style'
+  },
 })
 export class OpOcticonComponentBase {
   @Input() size:SVGSize = 'medium';
   @Input() verticalAlign = 'text-bottom';
   @Input() title = '';
   @Input() tabIndex?: number;
+  @Input() fill = 'currentColor';
+  @Input() id = '';
+  @Input('aria-label') ariaLabel = '';
+  @Input('aria-labelledby') ariaLabelledBy = '';
 
-  @HostBinding('attr.role') role = 'img';
-  @HostBinding('attr.fill') @Input() fill = 'currentColor';
-  @HostBinding('attr.id') @Input() id = '';
-  @HostBinding('attr.aria-label') @Input('aria-label') ariaLabel = '';
-  @HostBinding('attr.aria-labelledby') @Input('aria-labelledby') arialabelledby = '';
+  readonly baseClassName = true;
 
-  @HostBinding('class.octicon') baseClassName = true;
-  @HostBinding('attr.aria-hidden') get ariaHidden() {
+  get ariaHidden() {
     return !this.ariaLabel;
   }
-  @HostBinding('attr.tabindex') get tabIndexAttr() {
+  get tabIndexAttr() {
     return this.tabIndex;
   }
-  @HostBinding('attr.focusable') get focusable() {
+  get focusable() {
     return (this.tabIndex && this.tabIndex >= 0);
   }
-  @HostBinding('style') get style () {
+  get style () {
     return {
       display: 'inline-block',
       'user-select': 'none',
@@ -41,7 +48,7 @@ export class OpOcticonComponentBase {
       width: `${this.width}px`
     };
   };
-  @HostBinding('attr.viewBox')
+
   get viewBox() {
     return `0 0 ${this.naturalWidth} ${this.naturalHeight}`;
   }
