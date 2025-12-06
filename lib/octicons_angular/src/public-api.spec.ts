@@ -4,15 +4,14 @@ import {
   plusIconData,
   OpBcfIconComponent,
   opBcfIconData,
-  LogIconComponent,
   logIconData,
 
   toDOMString,
 } from './public-api';
 
 describe('Github native icon', () => {
-  let component: PlusIconComponent;
-  let fixture: ComponentFixture<PlusIconComponent>;
+  let component:PlusIconComponent;
+  let fixture:ComponentFixture<PlusIconComponent>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({imports: [PlusIconComponent]}).compileComponents();
@@ -29,13 +28,15 @@ describe('Github native icon', () => {
   });
 
   it('should render the svg', () => {
-    const iconElement: HTMLElement = fixture.nativeElement;
+    const iconElement:HTMLElement = fixture.nativeElement;
+
     expect(iconElement.children[0].tagName.toLowerCase()).toEqual('path');
     expect(iconElement.children[0].getAttribute('d')).toBeTruthy();
   });
 
   it('should render the title', () => {
-    const iconElement: HTMLElement = fixture.nativeElement;
+    const iconElement:HTMLElement = fixture.nativeElement;
+
     expect(iconElement.children[0].tagName.toLowerCase()).toEqual('path');
 
     component.title = 'Some title';
@@ -54,8 +55,8 @@ describe('Github native icon', () => {
 });
 
 describe('OpenProject extension icon', () => {
-  let component: OpBcfIconComponent;
-  let fixture: ComponentFixture<OpBcfIconComponent>;
+  let component:OpBcfIconComponent;
+  let fixture:ComponentFixture<OpBcfIconComponent>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({imports: [OpBcfIconComponent]}).compileComponents();
@@ -72,7 +73,8 @@ describe('OpenProject extension icon', () => {
   });
 
   it('should render the svg', () => {
-    const iconElement: HTMLElement = fixture.nativeElement;
+    const iconElement:HTMLElement = fixture.nativeElement;
+
     expect(iconElement.children[0].tagName.toLowerCase()).toEqual('path');
     expect(iconElement.children[0].getAttribute('d')).toBeTruthy();
     expect(iconElement.children[1].tagName.toLowerCase()).toEqual('path');
@@ -91,6 +93,7 @@ describe('OpenProject extension icon', () => {
 describe('rendering without Angular', () => {
   it('should render the SVG', () => {
     const rendered = toDOMString(logIconData);
+
     expect(rendered).toContain('<svg');
     expect(rendered).toContain(`<path d="${logIconData[24].paths[0]}"></path>`);
     expect(rendered).toContain('</svg>');
@@ -98,6 +101,7 @@ describe('rendering without Angular', () => {
 
   it('should render the small SVG', () => {
     const rendered = toDOMString(logIconData, 'small');
+
     expect(rendered).toContain('<svg');
     expect(rendered).toContain(`<path d="${logIconData[16].paths[0]}"></path>`);
     expect(rendered).toContain('</svg>');
@@ -105,6 +109,7 @@ describe('rendering without Angular', () => {
 
   it('should render the SVG attributes', () => {
     const rendered = toDOMString(logIconData, 'medium', { extra: '1' });
+
     expect(rendered).toContain('<svg');
     expect(rendered).toContain('extra="1"');
     expect(rendered).toContain(`<path d="${logIconData[24].paths[0]}"></path>`);
