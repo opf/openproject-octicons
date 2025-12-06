@@ -8,3 +8,4 @@ Fix empty ARIA attributes being rendered on Angular octicon components
 - Make `aria-label` and `aria-labelledby` mutually exclusive (aria-labelledby takes precedence)
 - Fix `aria-hidden` calculation to consider both `ariaLabel` and `ariaLabelledBy`
 - Add `tabindex` alias to `tabIndex` input for consistency with other lowercase attribute names
+- Remove legacy `focusable` SVG attribute (not supported in modern browsers)
