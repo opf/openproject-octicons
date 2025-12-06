@@ -11,7 +11,6 @@ import { closestNaturalHeight, SVGData, SVGSize, sizeMap } from './helpers';
     '[attr.aria-labelledby]': 'ariaLabelledByAttr()',
     '[attr.aria-hidden]': 'ariaHidden()',
     '[attr.tabindex]': 'tabIndex()',
-    '[attr.focusable]': 'focusable()',
     '[attr.viewBox]': 'viewBox()',
     '[class.octicon]': 'baseClassName',
     '[style]': 'style()'
@@ -51,11 +50,6 @@ export class OpOcticonComponentBase {
 
   readonly ariaLabelledByAttr = computed(() => {
     return this.ariaLabelledBy() || null;
-  });
-
-  readonly focusable = computed(() => {
-    const ti = this.tabIndex();
-    return ti !== undefined && ti >= 0;
   });
 
   readonly style = computed(() => ({

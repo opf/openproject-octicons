@@ -296,20 +296,4 @@ describe('tabindex attribute', () => {
     const iconElement: HTMLElement = fixture.nativeElement;
     expect(iconElement.getAttribute('tabindex')).toEqual('-1');
   });
-
-  it('should set focusable to true when tabindex is 0 or positive', () => {
-    fixture.componentRef.setInput('tabindex', 0);
-    fixture.detectChanges();
-
-    const iconElement: HTMLElement = fixture.nativeElement;
-    expect(iconElement.getAttribute('focusable')).toEqual('true');
-  });
-
-  it('should set focusable to false when tabindex is negative', () => {
-    fixture.componentRef.setInput('tabindex', -1);
-    fixture.detectChanges();
-
-    const iconElement: HTMLElement = fixture.nativeElement;
-    expect(iconElement.getAttribute('focusable')).toEqual('false');
-  });
 });
