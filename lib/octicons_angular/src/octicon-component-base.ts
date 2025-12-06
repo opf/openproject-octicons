@@ -20,12 +20,12 @@ import { closestNaturalHeight, SVGData, SVGSize, sizeMap } from './helpers';
 export class OpOcticonComponentBase {
   @Input() size:SVGSize = 'medium';
   @Input() verticalAlign = 'text-bottom';
-  @Input() title = '';
+  @Input() title?: string;
   @Input() tabIndex?: number;
   @Input() fill = 'currentColor';
-  @Input() id = '';
-  @Input('aria-label') ariaLabel = '';
-  @Input('aria-labelledby') ariaLabelledBy = '';
+  @Input() id?: string;
+  @Input('aria-label') ariaLabel?: string;
+  @Input('aria-labelledby') ariaLabelledBy?: string;
 
   readonly baseClassName = true;
 
