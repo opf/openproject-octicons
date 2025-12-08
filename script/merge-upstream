@@ -18,6 +18,9 @@ git reset --hard $COMMIT
 
 git checkout -b bump/primer-upstream
 git reset --hard origin/main
-git merge bump/primer-upstream-ref
+git merge bump/primer-upstream-ref --no-commit
 
 find .changeset/ -name "*.md" -exec $SED -i "s/\@primer\/octicons/\@openproject\/octicons/g" {} +
+git add .changeset/
+
+git commit
