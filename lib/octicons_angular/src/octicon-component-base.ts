@@ -4,7 +4,7 @@ import { closestNaturalHeight, SVGData, SVGSize, sizeMap } from './helpers';
 
 @Directive({
   host: {
-    'role': 'img',
+    '[attr.role]': 'role()',
     '[attr.fill]': 'fill()',
     '[attr.id]': 'id()',
     '[attr.aria-label]': 'ariaLabelAttr()',
@@ -29,6 +29,14 @@ export class OpOcticonComponentBase {
   readonly ariaLabelledBy = input<string>(undefined, { alias: 'aria-labelledby' });
 
   readonly baseClassName = true;
+
+  /**
+   * role="img" should only be set when the icon has an accessible label.
+   * Setting both role="img" and aria-hidden="true" is an accessibility error.
+   */
+  readonly role = computed(() => {
+    return (this.ariaLabel() || this.ariaLabelledBy()) ? 'img' : null;
+  });
 
   /**
    * aria-hidden is true when neither aria-label nor aria-labelledby is provided
