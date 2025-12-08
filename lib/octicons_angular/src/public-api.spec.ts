@@ -38,7 +38,7 @@ describe('Github native icon', () => {
     const iconElement: HTMLElement = fixture.nativeElement;
     expect(iconElement.children[0].tagName.toLowerCase()).toEqual('path');
 
-    component.title = 'Some title';
+    fixture.componentRef.setInput('title', 'Some title');
     fixture.detectChanges();
 
     expect(iconElement.children[0].tagName.toLowerCase()).toEqual('title');
@@ -109,5 +109,245 @@ describe('rendering without Angular', () => {
     expect(rendered).toContain('extra="1"');
     expect(rendered).toContain(`<path d="${logIconData[24].paths[0]}"></path>`);
     expect(rendered).toContain('</svg>');
+  });
+});
+
+describe('ARIA attributes', () => {
+  let component: PlusIconComponent;
+  let fixture: ComponentFixture<PlusIconComponent>;
+
+  beforeEach(waitForAsync(() => {
+    TestBed.configureTestingModule({imports: [PlusIconComponent]}).compileComponents();
+  }));
+
+  beforeEach(() => {
+    fixture = TestBed.createComponent(PlusIconComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it('should not render aria-label when undefined', () => {
+    fixture.detectChanges();
+
+    const iconElement: HTMLElement = fixture.nativeElement;
+    expect(iconElement.getAttribute('aria-label')).toBeNull();
+  });
+
+  it('should render aria-label when set to non-empty value', () => {
+    fixture.componentRef.setInput('aria-label', 'Add item');
+    fixture.detectChanges();
+
+    const iconElement: HTMLElement = fixture.nativeElement;
+    expect(iconElement.getAttribute('aria-label')).toEqual('Add item');
+  });
+
+  it('should not render aria-labelledby when undefined', () => {
+    fixture.detectChanges();
+
+    const iconElement: HTMLElement = fixture.nativeElement;
+    expect(iconElement.getAttribute('aria-labelledby')).toBeNull();
+  });
+
+  it('should render aria-labelledby when set to non-empty value', () => {
+    fixture.componentRef.setInput('aria-labelledby', 'my-label-id');
+    fixture.detectChanges();
+
+    const iconElement: HTMLElement = fixture.nativeElement;
+    expect(iconElement.getAttribute('aria-labelledby')).toEqual('my-label-id');
+  });
+
+  it('should not render id when undefined', () => {
+    fixture.detectChanges();
+
+    const iconElement: HTMLElement = fixture.nativeElement;
+    expect(iconElement.getAttribute('id')).toBeNull();
+  });
+
+  it('should render id when set to non-empty value', () => {
+    fixture.componentRef.setInput('id', 'my-icon-id');
+    fixture.detectChanges();
+
+    const iconElement: HTMLElement = fixture.nativeElement;
+    expect(iconElement.getAttribute('id')).toEqual('my-icon-id');
+  });
+
+  it('should set aria-hidden to false when aria-label is set', () => {
+    fixture.componentRef.setInput('aria-label', 'Add item');
+    fixture.detectChanges();
+
+    const iconElement: HTMLElement = fixture.nativeElement;
+    expect(iconElement.getAttribute('aria-hidden')).toEqual('false');
+  });
+
+  it('should set aria-hidden to true when neither aria-label nor aria-labelledby is set', () => {
+    fixture.detectChanges();
+
+    const iconElement: HTMLElement = fixture.nativeElement;
+    expect(iconElement.getAttribute('aria-hidden')).toEqual('true');
+  });
+
+  it('should set aria-hidden to false when aria-labelledby is set', () => {
+    fixture.componentRef.setInput('aria-labelledby', 'my-label-id');
+    fixture.detectChanges();
+
+    const iconElement: HTMLElement = fixture.nativeElement;
+    expect(iconElement.getAttribute('aria-hidden')).toEqual('false');
+  });
+
+  it('should prefer aria-labelledby over aria-label when both are provided', () => {
+    fixture.componentRef.setInput('aria-label', 'Add item');
+    fixture.componentRef.setInput('aria-labelledby', 'my-label-id');
+    fixture.detectChanges();
+
+    const iconElement: HTMLElement = fixture.nativeElement;
+    expect(iconElement.getAttribute('aria-labelledby')).toEqual('my-label-id');
+    expect(iconElement.getAttribute('aria-label')).toBeNull();
+    expect(iconElement.getAttribute('aria-hidden')).toEqual('false');
+  });
+
+  it('should not render aria-label or aria-labelledby when aria-hidden is true', () => {
+    // aria-hidden is true when both aria-label and aria-labelledby are not set
+    fixture.detectChanges();
+
+    const iconElement: HTMLElement = fixture.nativeElement;
+    expect(iconElement.getAttribute('aria-hidden')).toEqual('true');
+    expect(iconElement.getAttribute('aria-label')).toBeNull();
+    expect(iconElement.getAttribute('aria-labelledby')).toBeNull();
+  });
+
+  it('should not render aria-label when set to empty string', () => {
+    fixture.componentRef.setInput('aria-label', '');
+    fixture.detectChanges();
+
+    const iconElement: HTMLElement = fixture.nativeElement;
+    expect(iconElement.getAttribute('aria-label')).toBeNull();
+    expect(iconElement.getAttribute('aria-hidden')).toEqual('true');
+  });
+
+  it('should not render aria-labelledby when set to empty string', () => {
+    fixture.componentRef.setInput('aria-labelledby', '');
+    fixture.detectChanges();
+
+    const iconElement: HTMLElement = fixture.nativeElement;
+    expect(iconElement.getAttribute('aria-labelledby')).toBeNull();
+    expect(iconElement.getAttribute('aria-hidden')).toEqual('true');
+  });
+});
+
+describe('tabindex attribute', () => {
+  let component: PlusIconComponent;
+  let fixture: ComponentFixture<PlusIconComponent>;
+
+  beforeEach(waitForAsync(() => {
+    TestBed.configureTestingModule({imports: [PlusIconComponent]}).compileComponents();
+  }));
+
+  beforeEach(() => {
+    fixture = TestBed.createComponent(PlusIconComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it('should not render tabindex when undefined', () => {
+    fixture.detectChanges();
+
+    const iconElement: HTMLElement = fixture.nativeElement;
+    expect(iconElement.getAttribute('tabindex')).toBeNull();
+  });
+
+  it('should render tabindex when set using tabIndex', () => {
+    fixture.componentRef.setInput('tabIndex', 0);
+    fixture.detectChanges();
+
+    const iconElement: HTMLElement = fixture.nativeElement;
+    expect(iconElement.getAttribute('tabindex')).toEqual('0');
+  });
+
+  it('should render tabindex when set to positive value', () => {
+    fixture.componentRef.setInput('tabIndex', 1);
+    fixture.detectChanges();
+
+    const iconElement: HTMLElement = fixture.nativeElement;
+    expect(iconElement.getAttribute('tabindex')).toEqual('1');
+  });
+
+  it('should render tabindex when set to negative value', () => {
+    fixture.componentRef.setInput('tabIndex', -1);
+    fixture.detectChanges();
+
+    const iconElement: HTMLElement = fixture.nativeElement;
+    expect(iconElement.getAttribute('tabindex')).toEqual('-1');
+  });
+});
+
+describe('role attribute', () => {
+  let component: PlusIconComponent;
+  let fixture: ComponentFixture<PlusIconComponent>;
+
+  beforeEach(waitForAsync(() => {
+    TestBed.configureTestingModule({imports: [PlusIconComponent]}).compileComponents();
+  }));
+
+  beforeEach(() => {
+    fixture = TestBed.createComponent(PlusIconComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it('should not render role when neither aria-label nor aria-labelledby is set', () => {
+    fixture.detectChanges();
+
+    const iconElement: HTMLElement = fixture.nativeElement;
+    expect(iconElement.getAttribute('role')).toBeNull();
+    expect(iconElement.getAttribute('aria-hidden')).toEqual('true');
+  });
+
+  it('should render role="img" when aria-label is set', () => {
+    fixture.componentRef.setInput('aria-label', 'Add item');
+    fixture.detectChanges();
+
+    const iconElement: HTMLElement = fixture.nativeElement;
+    expect(iconElement.getAttribute('role')).toEqual('img');
+    expect(iconElement.getAttribute('aria-hidden')).toEqual('false');
+  });
+
+  it('should render role="img" when aria-labelledby is set', () => {
+    fixture.componentRef.setInput('aria-labelledby', 'my-label-id');
+    fixture.detectChanges();
+
+    const iconElement: HTMLElement = fixture.nativeElement;
+    expect(iconElement.getAttribute('role')).toEqual('img');
+    expect(iconElement.getAttribute('aria-hidden')).toEqual('false');
+  });
+
+  it('should not render role="img" when aria-hidden is true', () => {
+    // aria-hidden is true by default when neither aria-label nor aria-labelledby is set
+    fixture.detectChanges();
+
+    const iconElement: HTMLElement = fixture.nativeElement;
+    expect(iconElement.getAttribute('role')).toBeNull();
+    expect(iconElement.getAttribute('aria-hidden')).toEqual('true');
+  });
+
+  it('should ensure role="img" and aria-hidden="true" are mutually exclusive', () => {
+    // Test 1: No labels - should have aria-hidden, no role
+    fixture.detectChanges();
+    let iconElement: HTMLElement = fixture.nativeElement;
+    expect(iconElement.getAttribute('role')).toBeNull();
+    expect(iconElement.getAttribute('aria-hidden')).toEqual('true');
+
+    // Test 2: Add aria-label - should have role="img", aria-hidden="false"
+    fixture.componentRef.setInput('aria-label', 'Add item');
+    fixture.detectChanges();
+    iconElement = fixture.nativeElement;
+    expect(iconElement.getAttribute('role')).toEqual('img');
+    expect(iconElement.getAttribute('aria-hidden')).toEqual('false');
+
+    // Test 3: Remove aria-label - should have aria-hidden, no role
+    fixture.componentRef.setInput('aria-label', undefined);
+    fixture.detectChanges();
+    iconElement = fixture.nativeElement;
+    expect(iconElement.getAttribute('role')).toBeNull();
+    expect(iconElement.getAttribute('aria-hidden')).toEqual('true');
   });
 });
