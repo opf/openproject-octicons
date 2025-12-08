@@ -3,9 +3,8 @@ name: Release
 on:
   push:
     branches:
-      - 'main'
-      - 'next_major'
-
+      - "main"
+      - "next_major"
 jobs:
   release:
     name: Final
@@ -21,9 +20,9 @@ jobs:
           persist-credentials: false
 
       - name: Set up Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v6
         with:
-          node-version: 22.x
+          node-version: 24
 
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
@@ -44,5 +43,4 @@ jobs:
           version: yarn changeset:version
           publish: script/changeset-publish
         env:
-          GITHUB_TOKEN: ${{ secrets.GPR_AUTH_TOKEN_SHARED }}
-          NPM_TOKEN: ${{ secrets.NPM_AUTH_TOKEN_SHARED }}
+          GITHUB_TOKEN: ${{ steps.get-access-token.outputs.access-token }}
