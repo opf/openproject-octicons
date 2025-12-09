@@ -26,7 +26,7 @@ export class OpOcticonComponentBase {
   readonly fill = input('currentColor');
   readonly id = input<string>();
   readonly ariaLabel = input<string>(undefined, { alias: 'aria-label' });
-  readonly ariaLabelledBy = input<string>(undefined, { alias: 'aria-labelledby' });
+  readonly ariaLabelledby = input<string>(undefined, { alias: 'aria-labelledby' });
 
   readonly baseClassName = true;
 
@@ -35,13 +35,13 @@ export class OpOcticonComponentBase {
    * Setting both role="img" and aria-hidden="true" is an accessibility error.
    */
   readonly role = computed(() => {
-    return (this.ariaLabel() || this.ariaLabelledBy()) ? 'img' : null;
+    return (this.ariaLabel() || this.ariaLabelledby()) ? 'img' : null;
   });
 
   /**
    * aria-hidden is true when neither aria-label nor aria-labelledby is provided
    */
-  readonly ariaHidden = computed(() => !this.ariaLabel() && !this.ariaLabelledBy());
+  readonly ariaHidden = computed(() => !this.ariaLabel() && !this.ariaLabelledby());
 
   /**
    * aria-labelledby takes precedence over aria-label when both are provided.
@@ -50,14 +50,16 @@ export class OpOcticonComponentBase {
    */
   readonly ariaLabelAttr = computed(() => {
     // Don't set aria-label when aria-labelledby is set (mutual exclusivity)
-    if (this.ariaLabelledBy()) {
+    if (this.ariaLabelledby()) {
       return null;
     }
+    // eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing
     return this.ariaLabel() || null;
   });
 
   readonly ariaLabelledByAttr = computed(() => {
-    return this.ariaLabelledBy() || null;
+    // eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing
+    return this.ariaLabelledby() || null;
   });
 
   readonly style = computed(() => ({
