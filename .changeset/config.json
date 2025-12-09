@@ -1,7 +1,8 @@
 {
-  "$schema": "https://unpkg.com/@changesets/config@1.6.1/schema.json",
+  "$schema": "https://unpkg.com/@changesets/config@2.0.0/schema.json",
   "changelog": ["@changesets/changelog-github", {"repo": "opf/openproject-octicons"}],
   "commit": false,
+  "fixed": [],
   "linked": [],
   "access": "public",
   "baseBranch": "main",
