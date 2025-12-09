@@ -1,5 +1,5 @@
 ---
-"@openproject/octicons-angular": patch
+"@openproject/octicons": patch
 ---
 
 Fix empty ARIA attributes being rendered on Angular octicon components
