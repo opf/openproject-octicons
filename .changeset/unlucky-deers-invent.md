@@ -1,5 +1,5 @@
 ---
-'@openproject/octicons': minor
+'@openproject/octicons-angular': minor
 ---
 
 Migrate components to "modern" Angular
