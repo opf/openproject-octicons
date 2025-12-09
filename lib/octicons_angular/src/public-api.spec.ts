@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import {
   PlusIconComponent,
   plusIconData,
@@ -16,9 +16,9 @@ describe('Github native icon', () => {
   let component:PlusIconComponent;
   let fixture:ComponentFixture<PlusIconComponent>;
 
-  beforeEach(waitForAsync(() => {
-    void TestBed.configureTestingModule({imports: [PlusIconComponent]}).compileComponents();
-  }));
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({imports: [PlusIconComponent]}).compileComponents();
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(PlusIconComponent);
@@ -61,9 +61,9 @@ describe('OpenProject extension icon', () => {
   let component:OpBcfIconComponent;
   let fixture:ComponentFixture<OpBcfIconComponent>;
 
-  beforeEach(waitForAsync(() => {
-    void TestBed.configureTestingModule({imports: [OpBcfIconComponent]}).compileComponents();
-  }));
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({imports: [OpBcfIconComponent]}).compileComponents();
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(OpBcfIconComponent);
@@ -123,9 +123,9 @@ describe('rendering without Angular', () => {
 describe('ARIA attributes', () => {
   let fixture:ComponentFixture<PlusIconComponent>;
 
-  beforeEach(waitForAsync(() => {
-    void TestBed.configureTestingModule({imports: [PlusIconComponent]}).compileComponents();
-  }));
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({imports: [PlusIconComponent]}).compileComponents();
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(PlusIconComponent);
@@ -256,9 +256,9 @@ describe('ARIA attributes', () => {
 describe('tabindex attribute', () => {
   let fixture:ComponentFixture<PlusIconComponent>;
 
-  beforeEach(waitForAsync(() => {
-    void TestBed.configureTestingModule({imports: [PlusIconComponent]}).compileComponents();
-  }));
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({imports: [PlusIconComponent]}).compileComponents();
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(PlusIconComponent);
@@ -304,9 +304,9 @@ describe('tabindex attribute', () => {
 describe('role attribute', () => {
   let fixture:ComponentFixture<PlusIconComponent>;
 
-  beforeEach(waitForAsync(() => {
-    void TestBed.configureTestingModule({imports: [PlusIconComponent]}).compileComponents();
-  }));
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({imports: [PlusIconComponent]}).compileComponents();
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(PlusIconComponent);
