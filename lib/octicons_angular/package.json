@@ -4,11 +4,14 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "npm run generate && ng build",
-    "generate": "script/build.js",
-    "lint": "eslint src script",
-    "test": "npm run generate && ng test --no-watch --no-progress",
-    "watch": "script/build.js && ng build --watch --configuration development"
+    "generate": "node script/build.js",
+    "prebuild": "yarn generate",
+    "build": "ng build",
+    "pretest": "yarn generate",
+    "test": "ng test --no-watch --no-progress",
+    "prewatch": "yarn generate",
+    "watch": "ng build --watch --configuration development",
+    "lint": "eslint src script"
   },
   "peerDependencies": {
     "@angular/common": ">=19.0.0 <21.0.0",
