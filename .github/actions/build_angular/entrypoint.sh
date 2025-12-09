@@ -2,6 +2,8 @@
 
 set -e
 
+printf "//registry.npmjs.org/:_authToken=%s" "$NPM_AUTH_TOKEN_SHARED" > "$HOME/.npmrc"
+
 PACKAGE_VERSION=$(jq '.version' --raw-output ./package.json)
 
 echo "************* Building v$PACKAGE_VERSION *************"
