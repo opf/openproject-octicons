@@ -1,5 +1,36 @@
 # Changelog
 
+## 19.32.0
+
+### Minor Changes
+
+- [#1132](https://github.com/primer/octicons/pull/1132) [`c5411b04`](https://github.com/opf/openproject-octicons/commit/c5411b048090e13a0e6ffafaa10efdc24a8e05b5) Thanks [@mperrotti](https://github.com/mperrotti)! - Adds icons used for Copilot Loops
+
+* [#1134](https://github.com/primer/octicons/pull/1134) [`131fbedc`](https://github.com/opf/openproject-octicons/commit/131fbedc579b6ebc07716dc02ed947a168c560f2) Thanks [@mperrotti](https://github.com/mperrotti)! - Adds icons used for Copilot Markdown text wrapping options
+
+- [#1133](https://github.com/primer/octicons/pull/1133) [`94ceabb7`](https://github.com/opf/openproject-octicons/commit/94ceabb7e1371eefd8ba26ec8eb59cf6149e7a29) Thanks [@mperrotti](https://github.com/mperrotti)! - Adds icons used for feedback dialogs
+
+* [#147](https://github.com/opf/openproject-octicons/pull/147) [`5ff9cf12`](https://github.com/opf/openproject-octicons/commit/5ff9cf12736c588c8141aafcf7b9eaefbd02c553) Thanks [@myabc](https://github.com/myabc)! - Migrate components to "modern" Angular
+
+  - Replaces @HostBinding decorator with host property
+  - Migrates to signal inputs and computed signals
+  - Migrates to inject function
+
+### Patch Changes
+
+- [#1137](https://github.com/primer/octicons/pull/1137) [`97cefc9f`](https://github.com/opf/openproject-octicons/commit/97cefc9fcb19f91133cffd557cc1f308e384ffb2) Thanks [@dependabot](https://github.com/apps/dependabot)! - Bump js-yaml from 3.13.1 to 3.14.2
+
+* [#148](https://github.com/opf/openproject-octicons/pull/148) [`bda3a512`](https://github.com/opf/openproject-octicons/commit/bda3a5125d37f3a690473a018ddff835c9369d1d) Thanks [@copilot-swe-agent](https://github.com/apps/copilot-swe-agent)! - Fix empty ARIA attributes being rendered on Angular octicon components
+
+  - Prevent `aria-label` and `aria-labelledby` attributes from being rendered when not set
+  - Make `aria-label` and `aria-labelledby` mutually exclusive (aria-labelledby takes precedence)
+  - Fix `aria-hidden` calculation to consider both `ariaLabel` and `ariaLabelledBy`
+  - Make `role="img"` conditional - only set when icon has accessible label (aria-label or aria-labelledby)
+  - Ensure `role="img"` and `aria-hidden="true"` are mutually exclusive to prevent accessibility errors
+  - Remove legacy `focusable` SVG attribute (not supported in modern browsers)
+
+- [#1135](https://github.com/primer/octicons/pull/1135) [`be5df35d`](https://github.com/opf/openproject-octicons/commit/be5df35d390439f972af3adbd9ec59d38ec4c624) Thanks [@mperrotti](https://github.com/mperrotti)! - Updates VS Code icon to closer match the real app icon
+
 ## 19.31.1
 
 ### Patch Changes
