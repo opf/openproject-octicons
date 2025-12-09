@@ -86,6 +86,8 @@ jobs:
         run: yarn build
       - name: Lint
         run: yarn lint
+      - name: Install Playwright Browsers
+        run: npx playwright install --with-deps
       - name: Test
         run: yarn test
 
