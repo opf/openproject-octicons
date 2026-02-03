@@ -59,8 +59,6 @@ jobs:
           name: octicons_gem
           path: ./lib/octicons_helper/vendor/cache
       - uses: ./.github/actions/build_ruby
-        env:
-          RUBYGEMS_TOKEN: ${{ secrets.RUBYGEMS_TOKEN }}
         with:
           args: octicons_helper
 #  node:
@@ -73,8 +71,6 @@ jobs:
 #          name: octicons
 #          path: ./lib/build
 #      - uses: ./.github/actions/build_node
-#        env:
-#          NPM_AUTH_TOKEN_SHARED: ${{ secrets.NPM_AUTH_TOKEN_SHARED }}
 #        with:
 #          args: octicons_node
   angular:
@@ -88,7 +84,5 @@ jobs:
           path: ./lib/build
       - name: Build @openproject/octicons-angular
         uses: ./.github/actions/build_angular
-        env:
-          NPM_AUTH_TOKEN_SHARED: ${{ secrets.NPM_AUTH_TOKEN_SHARED }}
         with:
           args: octicons_angular
