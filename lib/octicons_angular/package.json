@@ -1,6 +1,7 @@
 {
   "name": "@openproject/octicons-angular",
   "version": "0.0.0",
+  "repository": "opf/openproject-octicons",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
