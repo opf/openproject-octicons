@@ -57,10 +57,10 @@ jobs:
 
       - name: Create release pull request or publish to npm
         id: changesets
-        uses: changesets/action@v1
+        uses: changesets/action@v1.4.10
         with:
           title: Release Tracking
           version: yarn changeset:version
           publish: script/changeset-publish
         env:
-          GITHUB_TOKEN: ${{ steps.get-access-token.outputs.access-token }}
+          GITHUB_TOKEN: ${{ steps.get-access-token.outputs.token }}
