@@ -33,4 +33,5 @@ bundle exec rake version\["$PACKAGE_VERSION"\]
 bundle update
 
 echo "**************** Building ****************"
-(bundle exec rake build; gem push pkg/*.gem) && wait
+bundle exec rake build
+gem push pkg/*.gem || echo "WARNING: gem push failed (version may already exist on RubyGems)"
