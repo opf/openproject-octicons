@@ -26,10 +26,5 @@ npm ci
 echo "**************** Building ****************"
 npm run build
 
-{
-  echo "**************** Publishing ****************"
-  cd dist/octicons-angular && npm version --allow-same-version "$PACKAGE_VERSION" && npm publish --tag $PUBLISH_TAG --access public
-} || {
-  # Bail out of publishing
-  exit 0
-}
+echo "**************** Publishing ****************"
+cd dist/octicons-angular && npm version --allow-same-version "$PACKAGE_VERSION" && npm publish --tag $PUBLISH_TAG --provenance --access public
