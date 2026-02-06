@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "repository": {
     "type": "git",
-    "url": "https://github.com/opf/openproject-octicons"
+    "url": "git+https://github.com/opf/openproject-octicons.git"
   },
   "scripts": {
     "ng": "ng",
