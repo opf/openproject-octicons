@@ -1,7 +1,10 @@
 {
   "name": "@openproject/octicons",
   "version": "19.32.1",
-  "repository": "opf/openproject-octicons",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/opf/openproject-octicons"
+  },
   "publishConfig": {
     "registry": "no registry, don't publish from this package.json."
   },
