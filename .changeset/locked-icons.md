@@ -1,5 +1,5 @@
 ---
-'@openproject/octicons': minor
+'@primer/octicons': minor
 ---
 
 Add book-locked icon
