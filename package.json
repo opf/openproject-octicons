@@ -1,6 +1,6 @@
 {
   "name": "@openproject/octicons",
-  "version": "19.32.1",
+  "version": "19.33.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/opf/openproject-octicons"
@@ -32,7 +32,6 @@
     "js-yaml": "3.14.2",
     "lodash.merge": "4.6.2",
     "prettier": "3.4.1",
-    "lodash.merge": "4.6.2",
     "svgo": "3.3.3",
     "svgson": "5.2.1",
     "trim-newlines": "3.0.1",

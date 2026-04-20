@@ -1,5 +1,22 @@
 # Changelog
 
+## 19.33.0
+
+### Minor Changes
+
+- [#1185](https://github.com/primer/octicons/pull/1185) [`25e257ff`](https://github.com/opf/openproject-octicons/commit/25e257ffb904ebe7d42b6c0f602acc1d30c3380f) Thanks [@francinelucca](https://github.com/francinelucca)! - Add `data-component="Octicon"` attribute to all SVG elements for easier identification and styling
+
+* [#1157](https://github.com/primer/octicons/pull/1157) [`18e3b9fd`](https://github.com/opf/openproject-octicons/commit/18e3b9fd74c4bc85b1add3624a082fc0f6fd36c2) Thanks [@janmaarten-a11y](https://github.com/janmaarten-a11y)! - Add book-locked icon
+  Add comment-locked icon
+  Add issue-locked icon
+  Add git-pull-request-locked icon
+
+### Patch Changes
+
+- [#1190](https://github.com/primer/octicons/pull/1190) [`38dfb0d4`](https://github.com/opf/openproject-octicons/commit/38dfb0d46c28432002c1b6053f7ebb86695817bb) Thanks [@francinelucca](https://github.com/francinelucca)! - Allow `data-component` attribute to be overridden by consumers
+
+* [#1175](https://github.com/primer/octicons/pull/1175) [`ea8e6bb7`](https://github.com/opf/openproject-octicons/commit/ea8e6bb79894cc7e85564ee9b53d86b418738d04) Thanks [@kylewaynebenson](https://github.com/kylewaynebenson)! - - Remove set fill from svgs
+
 ## 19.32.1
 
 ### Patch Changes
