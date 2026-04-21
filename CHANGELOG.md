@@ -1,5 +1,11 @@
 # Changelog
 
+## 19.34.0
+
+### Minor Changes
+
+- [#194](https://github.com/opf/openproject-octicons/pull/194) [`6ca4e0ce`](https://github.com/opf/openproject-octicons/commit/6ca4e0ce45a57e6d8812f95436f72d300deafc14) Thanks [@HDinger](https://github.com/HDinger)! - Add op-whiteboard icon
+
 ## 19.33.0
 
 ### Minor Changes
