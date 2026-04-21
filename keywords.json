@@ -211,6 +211,7 @@
   "op-threed-return-default": ["reset", "cube"],
   "op-view-fit-to": ["rectangle", "fit", "frame", "view"],
   "op-view-threed": ["3d", "threed"],
+  "op-whiteboards": ["whiteboard"],
   "organization": ["people", "group", "team"],
   "package": ["box", "ship"],
   "paintcan": ["style", "theme", "art", "color"],
