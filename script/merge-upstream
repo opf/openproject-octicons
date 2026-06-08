@@ -33,11 +33,12 @@ git reset --hard origin/main
 # generated files). Don't let set -e abort; leave the merge state to resolve.
 git merge bump/primer-upstream-ref --no-commit || true
 
-# Rename only the exact "@primer/octicons" package token in changesets. Sibling
-# packages (@primer/octicons-react, @primer/styled-octicons) intentionally keep
-# the @primer scope in this fork, so don't match them as a prefix.
+# Rename the @primer/octicons package token in changesets, whatever quote style
+# the changeset uses ('@primer/octicons' or "@primer/octicons"). The trailing
+# [^-] keeps sibling packages (@primer/octicons-react, @primer/styled-octicons)
+# untouched and is preserved via the \1 backreference.
 find .changeset/ -name "*.md" -exec "${SED_INPLACE[@]}" \
-  's/"@primer\/octicons"/"@openproject\/octicons"/g' {} +
+  's/@primer\/octicons\([^-]\)/@openproject\/octicons\1/g' {} +
 
 # Rebuild generated assets from the merged icons/ and refresh the lockfile.
 yarn install
