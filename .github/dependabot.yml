@@ -11,6 +11,9 @@ updates:
       interval: "daily"
     allow:
       - dependency-name: "@primer/gatsby-theme-doctocat"
+    labels:
+    - 'dependencies'
+    - 'skip changeset'
     cooldown:
       default-days: 7
 
