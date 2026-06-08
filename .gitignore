@@ -23,3 +23,7 @@ public
 
 # generated stuff
 __generated__
+
+# Local Claude instructions
+CLAUDE.local.md
+claude.local.md
