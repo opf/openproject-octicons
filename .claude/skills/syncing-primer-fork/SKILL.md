@@ -109,6 +109,41 @@ yarn build          # regenerates lib/build/data.json from merged icons/
 git commit          # finishes the deferred merge commit
 ```
 
+### 4. Audit dependency bumps dropped by `merge=ours`
+
+Because `yarn.lock` is `merge=ours`, any upstream bump made by `yarn upgrade
+<pkg>` **alone** — no root `package.json` change, the common shape for a
+Dependabot patch or transitive bump — is discarded on merge. The fork silently
+stays on the old locked version, and **there is no fallback**: the fork's own
+Dependabot (`.github/dependabot.yml`) only watches `/docs` and
+`/lib/octicons_angular` npm, *not* the root yarn workspace. The angular
+`package-lock.json` is *not* `merge=ours` (it 3-way merges), but `npm install`
+re-resolving to that manifest's ranges can still lock a **lower** version than
+upstream had — the same "missing bump" failure.
+
+After the merge, before you commit, list what upstream locked that the fork
+didn't pick up:
+
+```bash
+# root yarn: '+' side is upstream's TARGET, '-' is the fork's merged result
+git diff bump/primer-upstream..<TARGET> -- yarn.lock
+# angular npm (noisier — scan the "version" lines for shared packages)
+git diff bump/primer-upstream..<TARGET> -- lib/octicons_angular/package-lock.json
+```
+
+For each bump worth replaying now — **security first** — re-apply it within the
+fork's constraints, then re-stage:
+
+```bash
+yarn upgrade <pkg>@<version>             # root (yarn classic v1)
+npm install <pkg>@<version>             # in lib/octicons_angular
+```
+
+If the fork's root `package.json` constraint *forbids* upstream's version, that's
+a manifest bump (resolve in step 3), not a lockfile-only replay. Root yarn bumps
+have no Dependabot safety net here, so don't defer the security-relevant ones.
+These are dependency bumps, so no changeset.
+
 ## Quick Reference
 
 ```bash
@@ -119,6 +154,8 @@ for vp in $(git log upstream/main --grep="Version Packages" --not main --reverse
 done
 script/merge-upstream <TARGET> gsed
 # resolve conflicts: angular→npm install, root→yarn install, others normal
+# audit dropped bumps (merge=ours discards upstream yarn.lock-only bumps, no Dependabot fallback):
+git diff bump/primer-upstream..<TARGET> -- yarn.lock
 git add -A && git commit
 ```
 
@@ -146,6 +183,13 @@ git add -A && git commit
   re-validate after resolving: `ruby -ryaml -e 'YAML.load_file(ARGV[0])' <file>`
   (or `yq` / `python3 -c`), and confirm the *structure* parsed as intended — that a
   list is a list and sibling keys sit at the right depth, not just that it loads.
+- **Assuming rerere makes the sync reproducible.** `rerere.enabled` is usually set
+  *globally* (`~/.gitconfig`), and `.git/rr-cache` is **per-clone and never
+  committed** — so the same upstream batch resolves *differently* for different
+  people, and every replay lands silently in the working tree (all files, not just
+  YAML; with `rerere.autoupdate` it's even auto-staged). Diff every rerere-touched
+  hunk before staging; if a replayed resolution looks stale, `git rerere forget
+  <path>` and resolve it by hand.
 - **Inventing a PR/release flow.** The job ends at the local merge commit on
   `bump/primer-upstream`; release is a separate changeset-driven process.
 

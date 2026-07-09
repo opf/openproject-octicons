@@ -35,14 +35,17 @@ git merge bump/primer-upstream-ref --no-commit || true
 
 # Rename the @primer/octicons package token in changesets, whatever quote style
 # the changeset uses ('@primer/octicons' or "@primer/octicons"). The trailing
-# [^-] keeps sibling packages (@primer/octicons-react, @primer/styled-octicons)
-# untouched and is preserved via the \1 backreference.
-find .changeset/ -name "*.md" -exec "${SED_INPLACE[@]}" \
-  's/@primer\/octicons\([^-]\)/@openproject\/octicons\1/g' {} +
+# ([^-]|$) keeps sibling packages (@primer/octicons-react, @primer/styled-octicons)
+# untouched while still matching the token at end of line; the captured char
+# (empty at EOL) is preserved via the \1 backreference.
+find .changeset/ -name "*.md" -exec "${SED_INPLACE[@]}" -E \
+  's/@primer\/octicons([^-]|$)/@openproject\/octicons\1/g' {} +
 
-# Rebuild generated assets from the merged icons/ and refresh the lockfile.
-yarn install
-yarn build
+# Rebuild generated assets from the merged icons/ and refresh the lockfile. This
+# is expected to fail while package.json still holds conflict markers (invalid
+# JSON), so stay tolerant like the merge above and let the staging and commit
+# below run for the clean case; resolve conflicts then re-run yarn install/build.
+yarn install && yarn build || true
 
 git add yarn.lock lib/ .changeset/
 
