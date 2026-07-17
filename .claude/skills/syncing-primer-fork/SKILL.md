@@ -144,7 +144,33 @@ a manifest bump (resolve in step 3), not a lockfile-only replay. Root yarn bumps
 have no Dependabot safety net here, so don't defer the security-relevant ones.
 These are dependency bumps, so no changeset.
 
-### 5. If asked to push and open a PR
+### 5. Audit new icons for missing `keywords.json` entries (octicons only)
+
+Upstream *usually* adds a `keywords.json` entry in the same commit as a new
+icon, but not always — and the fork's own resolutions in step 3 don't touch
+`keywords.json`, so a gap upstream shipped passes through untouched.
+`script/build.js` doesn't fail on a missing entry — it silently falls back to
+an empty `keywords` array (`keywords[name] || []`), so nothing in `yarn build`
+or the test suite catches it.
+
+After resolving conflicts, check every icon this batch added:
+
+```bash
+comm -23 \
+  <(git diff --name-only --diff-filter=A main -- 'icons/*.svg' | sed -E 's#icons/(.*)-[0-9]+\.svg#\1#' | sort -u) \
+  <(python3 -c "import json; [print(k) for k in json.load(open('keywords.json'))]" | sort)
+```
+
+Diff against `main`, not `bump/primer-upstream-ref` — the ref branch is just
+upstream's tree at TARGET, so comparing against it flags every fork-only
+`op-*` icon as "new" too. `main` is the fork's actual pre-batch state.
+
+Anything printed is a new icon with no `keywords.json` entry. Add one —
+follow the file's alphabetical ordering and the terseness of neighboring
+entries (2–7 lowercase terms describing what the icon looks like or is used
+for, not a restatement of its name).
+
+### 6. If asked to push and open a PR
 
 The SHA is meaningless to a reviewer — title the PR with the upstream package
 version the batch reaches instead, read from `package.json` **at TARGET**
@@ -170,6 +196,8 @@ script/merge-upstream <TARGET> gsed
 # resolve conflicts: angular→npm install, root→yarn install, others normal
 # audit dropped bumps (merge=ours discards upstream yarn.lock-only bumps, no Dependabot fallback):
 git diff bump/primer-upstream..<TARGET> -- yarn.lock
+# audit new icons for missing keywords.json entries (octicons only, upstream doesn't always add them):
+comm -23 <(git diff --name-only --diff-filter=A main -- 'icons/*.svg' | sed -E 's#icons/(.*)-[0-9]+\.svg#\1#' | sort -u) <(python3 -c "import json; [print(k) for k in json.load(open('keywords.json'))]" | sort)
 git add -A && git commit
 ```
 
@@ -207,7 +235,11 @@ git add -A && git commit
 - **Inventing a PR/release flow.** The job ends at the local merge commit on
   `bump/primer-upstream`; release is a separate changeset-driven process.
 - **Titling the PR with the merge SHA.** A hex SHA tells a reviewer nothing.
-  Use the upstream package version at TARGET instead (see step 5).
+  Use the upstream package version at TARGET instead (see step 6).
+- **Assuming upstream always adds keywords with new icons.** It usually does,
+  but not always (e.g. upstream PR #1228 shipped three icons with no
+  `keywords.json` entries). `script/build.js` silently defaults to `[]` on a
+  miss — nothing fails, so it's easy to merge through unnoticed. Check step 5.
 
 ## Keeping the two forks aligned
 
@@ -220,3 +252,5 @@ differences to account for:
 - **Package managers / lockfiles:** octicons uses yarn (root) plus npm (for
   `octicons_angular`); view_components additionally uses Ruby Bundler
   (`Gemfile.lock`).
+- **`keywords.json` audit (step 5) is octicons-only.** view_components has no
+  equivalent keyword-search file to check.
