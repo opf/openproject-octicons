@@ -22,21 +22,54 @@ jobs:
       - uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # v3
         with:
           persist-credentials: false
+          fetch-depth: 0
+
+      - name: Get changed icons
+        id: changed
+        run: |
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            CHANGED=$(git diff --name-only --diff-filter=AMR ${{ github.event.pull_request.base.sha }} -- 'icons/*.svg' 'icons/**/*.svg')
+          else
+            CHANGED=$(git diff --name-only --diff-filter=AMR ${{ github.event.before }} -- 'icons/*.svg' 'icons/**/*.svg')
+          fi
+          if [ -z "$CHANGED" ]; then
+            echo "has_changes=false" >> $GITHUB_OUTPUT
+          else
+            echo "has_changes=true" >> $GITHUB_OUTPUT
+            echo "files<<EOF" >> $GITHUB_OUTPUT
+            echo "$CHANGED" >> $GITHUB_OUTPUT
+            echo "EOF" >> $GITHUB_OUTPUT
+          fi
 
       - uses: actions/setup-python@7f4fc3e22c37d6ff65e88745f38bd3157c663f7c # v4
+        if: steps.changed.outputs.has_changes == 'true'
         with:
-          python-version: '3.10' 
+          python-version: '3.10'
           cache: 'pip'
       - run: pip install -r .github/actions/python/requirements.txt
-      - run: for icon in icons/*; do picosvg $icon --output_file $icon; done
+        if: steps.changed.outputs.has_changes == 'true'
+      - name: Run picosvg on changed icons
+        if: steps.changed.outputs.has_changes == 'true'
+        run: |
+          while IFS= read -r icon; do
+            picosvg "$icon" --output_file "$icon"
+          done <<< "${{ steps.changed.outputs.files }}"
 
       - uses: actions/setup-node@3235b876344d2a9aa001b8d1453c930bba69e610 # v3
+        if: steps.changed.outputs.has_changes == 'true'
         with:
           node-version: 22
       - run: npm install
-      - run: npm run svgo
+        if: steps.changed.outputs.has_changes == 'true'
+      - name: Run svgo on changed icons
+        if: steps.changed.outputs.has_changes == 'true'
+        run: |
+          while IFS= read -r icon; do
+            npx svgo --config svgo.config.js "$icon"
+          done <<< "${{ steps.changed.outputs.files }}"
 
       - uses: EndBug/add-and-commit@a988073222b8bd50f3ecfca9c0ab7dfbf0d08ceb # v4
+        if: steps.changed.outputs.has_changes == 'true'
         with:
           add: 'icons'
           message: 'Optimize SVGs'
