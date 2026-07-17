@@ -144,6 +144,20 @@ a manifest bump (resolve in step 3), not a lockfile-only replay. Root yarn bumps
 have no Dependabot safety net here, so don't defer the security-relevant ones.
 These are dependency bumps, so no changeset.
 
+### 5. If asked to push and open a PR
+
+The SHA is meaningless to a reviewer — title the PR with the upstream package
+version the batch reaches instead, read from `package.json` **at TARGET**
+(TARGET sits right before the *next* version-bump, so its `version` field is
+the last upstream release this batch actually includes):
+
+```bash
+git show <TARGET>:package.json | grep '"version"'
+```
+
+e.g. TARGET's version `19.25.0` → title `Sync Primer octicons upstream through v19.25.0`,
+not `...through 9a7e2146`. The SHA can still go in the PR body for traceability.
+
 ## Quick Reference
 
 ```bash
@@ -192,6 +206,8 @@ git add -A && git commit
   <path>` and resolve it by hand.
 - **Inventing a PR/release flow.** The job ends at the local merge commit on
   `bump/primer-upstream`; release is a separate changeset-driven process.
+- **Titling the PR with the merge SHA.** A hex SHA tells a reviewer nothing.
+  Use the upstream package version at TARGET instead (see step 5).
 
 ## Keeping the two forks aligned
 
