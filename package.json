@@ -55,5 +55,9 @@
       "eslint-comments/no-use": 0
     }
   },
-  "packageManager": "yarn@1.22.1"
+  "packageManager": "yarn@1.22.1",
+  "resolutions": {
+    "ajv": "6.14.0",
+    "lodash": "4.18.1"
+  }
 }
