@@ -1,5 +1,37 @@
 # Changelog
 
+## 19.36.0
+
+### Minor Changes
+
+- [#1208](https://github.com/primer/octicons/pull/1208) [`eddab3ff`](https://github.com/opf/openproject-octicons/commit/eddab3ff19f1450eb1d60c78b1d20c2c4bc3fd15) Thanks [@dylanatsmith](https://github.com/dylanatsmith)! - Fix vscode icon: update 16px, add 24px, remove 32px and 48px
+
+* [#1197](https://github.com/primer/octicons/pull/1197) [`b45f1d35`](https://github.com/opf/openproject-octicons/commit/b45f1d35477402da4df64ae3a38dae8e95477dc4) Thanks [@lukasoppermann](https://github.com/lukasoppermann)! - Add repo-forked-locked icon
+
+- [#1203](https://github.com/primer/octicons/pull/1203) [`a69618e4`](https://github.com/opf/openproject-octicons/commit/a69618e4b64988784c9c0a06bbf809a3fa343642) Thanks [@ericwbailey](https://github.com/ericwbailey)! - Add flag icon
+
+* [#1228](https://github.com/primer/octicons/pull/1228) [`2f1449f1`](https://github.com/opf/openproject-octicons/commit/2f1449f1567b966f6a144b84d8109401d8e7fd29) Thanks [@dylanatsmith](https://github.com/dylanatsmith)! - Add project-check, graph-stacked-area, and view-files icons (16px and 24px)
+
+- [#212](https://github.com/opf/openproject-octicons/pull/212) [`91ca35b5`](https://github.com/opf/openproject-octicons/commit/91ca35b595e6e945f4204d30c39f143acb9123bd) Thanks [@myabc](https://github.com/myabc)! - Support Angular v21-22
+
+* [#1193](https://github.com/primer/octicons/pull/1193) [`b6efea4a`](https://github.com/opf/openproject-octicons/commit/b6efea4a5c2cc7bb59f77e4ae2b6dd753149179e) Thanks [@kylewaynebenson](https://github.com/kylewaynebenson)! - Added StackRemove & StackCheck icons
+
+- [#1194](https://github.com/primer/octicons/pull/1194) [`7d7ca421`](https://github.com/opf/openproject-octicons/commit/7d7ca421a71d4c982d9b191befbe43a0a8752e60) Thanks [@kylewaynebenson](https://github.com/kylewaynebenson)! - Added Sandbox icon
+
+### Patch Changes
+
+- [#1215](https://github.com/primer/octicons/pull/1215) [`378d7af0`](https://github.com/opf/openproject-octicons/commit/378d7af0e343d23fb7df31202d21032bfca0d2c7) Thanks [@ktravers](https://github.com/ktravers)! - Remove fill from StackRemove and StackCheck icons
+
+* [#1209](https://github.com/primer/octicons/pull/1209) [`9a7e2146`](https://github.com/opf/openproject-octicons/commit/9a7e2146907d2b0bf06d2dd65d2d17d4c3959108) Thanks [@siddharthkp](https://github.com/siddharthkp)! - fix: remove hardcoded fill from sandbox icon
+
+- [#1238](https://github.com/primer/octicons/pull/1238) [`91db6df3`](https://github.com/opf/openproject-octicons/commit/91db6df30c4c1fc708a57a9d7e2ef3719fae9cfc) Thanks [@liuliu-dev](https://github.com/liuliu-dev)! - Fix `repo-forked-locked-16` rendering mangled
+
+* [#1232](https://github.com/primer/octicons/pull/1232) [`71e1709e`](https://github.com/opf/openproject-octicons/commit/71e1709efe0b9c8869b618fac7d2671101b45d76) Thanks [@alexislucio](https://github.com/alexislucio)! - Add keywords for `project-template` icon
+
+- [#1221](https://github.com/primer/octicons/pull/1221) [`9d7b366a`](https://github.com/opf/openproject-octicons/commit/9d7b366a6ecfbbf8d632053a639b5400a3aecbb9) Thanks [@CameronFoxly](https://github.com/CameronFoxly)! - Add stack-add-16.svg
+
+* [#1212](https://github.com/primer/octicons/pull/1212) [`02bd1ef8`](https://github.com/opf/openproject-octicons/commit/02bd1ef8d15abffaa45be8e00c5fbc896e276c54) Thanks [@ericwbailey](https://github.com/ericwbailey)! - remove hardcoded fill from flag icon
+
 ## 19.35.0
 
 ### Minor Changes
