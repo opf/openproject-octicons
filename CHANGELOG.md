@@ -1,5 +1,11 @@
 # Changelog
 
+## 19.37.0
+
+### Minor Changes
+
+- [#241](https://github.com/opf/openproject-octicons/pull/241) [`1b6e5a79`](https://github.com/opf/openproject-octicons/commit/1b6e5a791dd86c461181a57a8d06fa04fbad1de2) Thanks [@bsatarnejad](https://github.com/bsatarnejad)! - Add op-scan-document and XWiki icons
+
 ## 19.36.0
 
 ### Minor Changes
