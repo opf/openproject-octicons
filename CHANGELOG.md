@@ -1,5 +1,11 @@
 # Changelog
 
+## 19.38.0
+
+### Minor Changes
+
+- [#243](https://github.com/opf/openproject-octicons/pull/243) [`9f846a75`](https://github.com/opf/openproject-octicons/commit/9f846a75f1f9f9a342e7a3aaa6e859405656ee45) Thanks [@bsatarnejad](https://github.com/bsatarnejad)! - Add Squash TM logo and mark icons
+
 ## 19.37.0
 
 ### Minor Changes
